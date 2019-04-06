@@ -1,0 +1,257 @@
+<html>
+
+<head>
+  <title>Đăng kí học phần</title>
+  <link rel="stylesheet" type="text/css" href="DangKi.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="solorgan">Đăng kí học phần</h2>
+    </br>
+    <div>
+      <form method="get" name="subjects">
+
+        <div class="infor">
+          <label for="maSo"><b>Mã số:&emsp;&emsp;&emsp; </b></label>
+          <input id="maSo" placeholder="Mã số" class="widthInput" type="text" name="Maso">
+        </div>
+        </br>
+        <div class="infor">
+          <label for="HoTen"><b>Họ tên:&emsp;&emsp;&emsp; </b></label>
+          <input id="HoTen" placeholder="Họ tên" class="widthInput" type="text" name="HoTen">
+        </div>
+        </br>
+        <div class="infor">
+          <label><b>Giới tính:&emsp;&emsp;&emsp; </b></label>
+          <span class="widthInput">
+            <input id="xnam" type="radio" name="gender" checked>Nam
+            <input id="xnu" type="radio" name="gender">Nữ
+          </span>
+        </div>
+    </div>
+    <div class="infor">
+      <label><b>Ngày sinh:&emsp;&emsp;&emsp; </b></label>
+      <span class="widthSelect">
+        <select id="Day" class="Date1">
+          <script type="text/javascript">
+            for (var i = 1; i < 32; i++) {
+              var html = '<option value="' + i + '">' + i + '</option>';
+              document.writeln(html);
+            }
+          </script>
+        </select>
+        <select id="Moth" class="Date1" style="margin-left: 25px;">
+          <script type="text/javascript">
+            for (var i = 1; i < 13; i++) {
+              var html = '<option value="' + i + '">' + i + '</option>';
+              document.writeln(html);
+            }
+          </script>
+        </select>
+        <select id="Year" class="Date2" style="margin-left: 25px;">
+          <script type="text/javascript">
+            for (var i = 1970; i < 2018; i++) {
+              var html = '<option value="' + i + '">' + i + '</option>';
+              document.writeln(html);
+            }
+          </script>
+        </select>
+    </div>
+    </br><br>
+    <div class="infor1">
+      <span>
+        <label><b>Các môn học</b></label>
+        <br>
+        <select multiple="multiple" id="left" class="WidthSelect1">
+          <option value="Chuyên đề java" id="obj1">Chuyên đề java</option>
+          <option value="CSDL Web" id="obj2">CSDL Web</option>
+          <option value="Trí tuệ nhân tạo" id="obj3">Trí tuệ nhân tạo</option>
+          <option value="Công nghệ phần mềm" id="obj4">Công nghệ phần mềm</option>
+          <option value="Lập trình window" id="obj5">Lập trình window</option>
+          <option value="Cấu trúc dữ liệu" id="obj6">Cấu trúc dữ liệu</option>
+          <option value="Lập trình hướng đối tượng" id="obj7">Lập trình hướng đối tượng</option>
+        </select>
+      </span>
+      <span style="margin-top: 10%;">
+        <input type="button" style="width:40px;" value=" >" onclick="Left_to_Right()" />
+        <br>
+        <input type="button" style="width:40px; margin-top: 5px;" value=">>" onclick="left_right_all()" />
+        <br>
+        <input type="button" style="width:40px; margin-top: 5px;" onclick="Right_to_left()" value="<" />
+        <br>
+        <input style="width:40px; margin-top: 5px;" type="button" value="<<" onclick="right_left_all()" />
+      </span>
+      <span>
+        <label><b>Đã chọn</b></label>
+        <br>
+        <select multiple="multiple" id="right" class="WidthSelect1"></select>
+      </span>
+    </div>
+    <br>
+    <div style=" width: 63%; display:flex;justify-content: center;">
+
+      <input onclick="Regist()" value="Đăng kí" type="button" />
+      <input onclick="ListDangKi()" value="Xem danh sách" type="button" style="margin-left:5px" />
+      <button style="margin-left:5px">Submit</button>
+    </div>
+    <br>
+    <div>
+      <table id="Table" border="1px" cellpadding="8px" cellspacing="0px" width="100%">
+        <tr style="background-color:gray">
+          <th align="center">Mã số</th>
+          <th align="center">Họ tên</th>
+          <th align="center">Giới tính</th>
+          <th align="center">Ngày sinh</th>
+        </tr>
+      </table>
+    </div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <p id="text"></p>
+        <span class="close" onclick="Close()">Close</span>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <script>
+    function refreshSelect() {
+      var left = document.getElementById("left").children;
+      var right = document.getElementById("right").children;
+
+      for (var i = 0; i < right.length; i++) {
+        right[i].selected = false;
+      }
+
+      for (var i = 0; i < left.length; i++) {
+        left[i].selected = false;
+      }
+    }
+    function Left_to_Right() {
+      var left = document.getElementById("left");
+      var right = document.getElementById("right");
+      var options = left.children;
+      for (var i = 0; i < options.length; i++) {
+        if (options[i].selected) {
+          right.appendChild(options[i]);
+        }
+      }
+      refreshSelect();
+    }
+    function Right_to_left() {
+      var left = document.getElementById("left");
+      var right = document.getElementById("right");
+      var options = right.children;
+      for (var i = 0; i < options.length; i++) {
+        if (options[i].selected) {
+          left.appendChild(options[i]);
+        }
+      }
+      refreshSelect();
+    }
+    function left_right_all() {
+      var right1 = document.getElementById("right");
+      var left1 = document.getElementById("left").children;
+      for (var i = 0; i < left1.length; i++) {
+        right1.appendChild(left1[i]);
+        i--;
+      }
+      refreshSelect();
+    }
+    function right_left_all() {
+      var left = document.getElementById("left");
+      var right = document.getElementById("right");
+      var options = right.children;
+      for (var i = 0; i < options.length; i++) {
+        left.appendChild(right[i]);
+        i--;
+      }
+      refreshSelect();
+    }
+    var arrStudents = [];
+    function Regist() {
+      var MS = subjects.Maso.value;
+      var HT = subjects.HoTen.value;
+      var isName = document.getElementById("xnam");
+      if (isName.checked === true) {
+        var genderx = 'Nam';
+      }
+      else {
+        var genderx = 'Nữ';
+      }
+      var day = document.getElementById("Day").value;
+      var Moth = document.getElementById("Moth").value;
+      var Year = document.getElementById("Year").value;
+      var ngaySinh = day + "/" + Moth + "/" + Year;
+
+      var tb = document.getElementById("Table");
+      var i = tb.rows.length;
+      var row = tb.insertRow(i);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      cell1.innerHTML = MS;
+      cell2.innerHTML = HT;
+      cell3.innerHTML = genderx;
+      cell4.innerHTML = ngaySinh;
+      var list = document.getElementById("right");
+      var options = list.children;
+      var arr = [];
+      for (var j = 0; j < options.length; j++) {
+        arr.push(options[j].value)
+      }
+      var arrayM = [];
+      arrayM.push(MS);
+      arrayM.push(HT);
+      arrayM.push(genderx);
+      arrayM.push(ngaySinh);
+      for (var k = 0; k < arr.length; k++) {
+        arrayM.push(arr[k]);
+
+      }
+      arrStudents.push(arrayM);
+      row.onclick = function () {
+        var b = "Các môn học đã đăng kí: <ul>";
+        for (var j = 4; j < arrayM.length; j++) {
+          b += "<li>" + arrayM[j] + "</li>";
+        }
+        b += "</ul>"
+        var a = "";
+        a = "Mã số: " + arrayM[0] + "<br>" + "Họ tên: " + arrayM[1] + "<br>" + "Giới tính: " + arrayM[2] + "<br>" + "Ngày sinh: " + arrayM[3] + "<br>" + b + "<hr>";
+        document.getElementById("text").innerHTML = a;
+        var modal = document.getElementById('myModal');
+        modal.style.display = "block";
+      }
+    }
+    function Close() {
+      var modal = document.getElementById('myModal');
+      modal.style.display = "none";
+    }
+    function ListDangKi() {
+      var a = "";
+      if (arrStudents.length == 0) {
+        a = "Chưa có sinh viên nào đăng kí";
+      }
+      else {
+        for (var i = 0; i < arrStudents.length; i++) {
+          var b = "Các môn học đã đăng kí:<ul>";
+          for (var j = 4; j < arrStudents[i].length; j++) {
+            b += "<li>" + arrStudents[i][j] + "</li>";
+          }
+          b += "</ul>";
+          a += "Mã số: " + arrStudents[i][0] + "<br>" + "Họ tên: " + arrStudents[i][1] + "<br>" + "Giới tính: " + arrStudents[i][2] + "<br>" + "Ngày sinh: " + arrStudents[i][3]
+            + "<br>" + b + "<hr>";
+        }
+      }
+      document.getElementById("text").innerHTML = a;
+      var modal = document.getElementById('myModal');
+      modal.style.display = "block";
+
+    }
+  </script>
+
+</body>
+
+</html>
