@@ -734,7 +734,7 @@ h1, h2, h3, h4, h5,
     .sticky-wrapper .site-navbar .site-logo a {
       color: #fff; }
     .sticky-wrapper .site-navbar ul li a {
-      color: rgba(255, 255, 255, 0.7) !important; }
+       }
       .sticky-wrapper .site-navbar ul li a.active {
         color: #fff !important; }
   .sticky-wrapper.is-sticky .site-navbar {

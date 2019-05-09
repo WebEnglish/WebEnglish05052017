@@ -26,14 +26,15 @@
 
   <link rel="stylesheet" href="css/An.css">
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
   <div class="btn-arrow-top">
-      <a href="#home-section"><button class="btn btn-round"><i class="fas fa-angle-double-up"></i></button></a>
+    <a href="#home-section"><button class="btn btn-round"><i class="fas fa-angle-double-up"></i></button></a>
   </div>
 
   <div class="site-wrap" id="home-section">
@@ -61,17 +62,46 @@
           <div class="col-12">
             <nav class="site-navigation text-center" role="navigation">
 
-              <ul class="site-menu js-clone-nav ml-auto d-none d-lg-block">
+              <ul class="site-menu has-children js-clone-nav ml-auto d-none d-lg-block">
                 <li><a href="#home-section" class="nav-link active">Home</a></li>
-                <li><a href="#" class="nav-link">Từ vựng</a></li>
-                <li><a href="#" class=" nav-link">Cấu trúc</a></li>
+                <li> 
+                  <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink"
+                  data-toggle="dropdown">Từ vựng</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <h5 class="dropdown-header">Chủ đề</h5>
+                      <a class="dropdown-item" href="#">Thức ăn</a>
+                      <a class="dropdown-item" href="#">Mua sắm</a>
+                      <a class="dropdown-item" href="#">Vật dụng trong nhà</a>
+                      <a class="dropdown-item" href="#">Con vật</a>
+                    </div>
+                </li>
+                <li>
+                  <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown">
+                    Cấu trúc
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Cơ bản</a>
+                    <a class="dropdown-item" href="#">Nâng cao</a>
+                  </div>
+                </li>
                 <li><a href="#" class=" nav-link">Luyện nghe</a></li>
                 <li><a href="#" class="nav-link">Xem phim phụ đề</a></li>
-                <li><a href="#" class=" nav-link">Bài kiểm tra</a></li>
+                <li>
+                  <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink"
+                  data-toggle="dropdown">Bài kiểm tra</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#">Kiểm tra trình độ</a>
+                      <a class="dropdown-item" href="#">Cơ bản</a>
+                      <a class="dropdown-item" href="#">Nâng cao</a>
+                    </div>
+                </li>
                 <li><a href="#" class=" nav-link">Tips </a></li>
               </ul>
             </nav>
           </div>
+
+
 
           <div class="toggle-button align-items-center float-left">
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Đăng nhập</a>

@@ -24,3 +24,13 @@
     background-color: rgb(223, 117, 91);
     box-shadow: 0px 0px 5px 2px rgb(231, 174, 159);
 }
+
+.dropdown-menu{
+    z-index: 1999;
+    width: 200px;
+}
+
+.dropdown-item:hover{
+   color: rgb(231, 88, 52);
+
+}
