@@ -34,3 +34,52 @@
    color: rgb(231, 88, 52);
 
 }
+
+#leftmenuinner{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 220px;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    padding-top: 80px;
+}
+
+.w3-sidebar{
+    width: 220px !important;
+    /* box-shadow: 0px 2px 15px 0px rgb(197, 123, 104); */
+}
+
+.w3-bar-item:hover{
+    background-color: rgb(209, 103, 76);
+    color: rgb(255, 255, 255);
+}
+
+.blog-content{
+    padding-left: 200px;
+}
+
+.btn-next{
+    float: right;
+    margin-right: 100px;
+    background-color: #dd6b4d;
+    color: white;
+}
+
+.btn-next:hover{
+    background-color: rgb(216, 83, 50);
+    color: white;
+    box-shadow: 2px 2px 5px 0px #DD6B4D;
+}
+
+.contain-button{
+    
+}
+
+.site-footer{
+    margin-top: 200px;
+}
+
+.footer-edit{
+    padding-left: 200px;
+}
