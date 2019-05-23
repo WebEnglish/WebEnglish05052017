@@ -289,11 +289,11 @@ h1, h2, h3, h4, h5,
     padding: em 0; }
 
 .site-footer {
-  padding: 4em 0;
+  padding: 1em 0;
   background: #333333; }
   @media (min-width: 768px) {
     .site-footer {
-      padding: 8em 0; } }
+      padding: 20px 0; } }
   .site-footer .border-top {
     border-top: 1px solid rgba(255, 255, 255, 0.1) !important; }
   .site-footer p {
@@ -305,7 +305,7 @@ h1, h2, h3, h4, h5,
     .site-footer a:hover {
       color: white; }
   .site-footer ul li {
-    margin-bottom: 10px; }
+    margin-bottom: 5px; }
   .site-footer .footer-heading {
     font-size: 16px;
     color: #fff; }
@@ -734,7 +734,7 @@ h1, h2, h3, h4, h5,
     .sticky-wrapper .site-navbar .site-logo a {
       color: #fff; }
     .sticky-wrapper .site-navbar ul li a {
-      color: rgba(255, 255, 255, 0.7) !important; }
+       }
       .sticky-wrapper .site-navbar ul li a.active {
         color: #fff !important; }
   .sticky-wrapper.is-sticky .site-navbar {
