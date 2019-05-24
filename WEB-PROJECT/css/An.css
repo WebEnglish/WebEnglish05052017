@@ -118,3 +118,8 @@
     color: white;
     box-shadow: 2px 2px 5px 0px #DD6B4D;
 }
+
+.w3-bar-block{
+    background-color: rgb(246, 252, 223) !important;
+}
+
