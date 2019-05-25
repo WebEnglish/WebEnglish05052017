@@ -83,3 +83,43 @@
 .footer-edit{
     padding-left: 200px;
 }
+
+.btn-start{
+    margin-top: 10px;
+    margin-left: 45%;
+    background-color: #dd6b4d;
+    color: white;
+}
+
+.btn-start:hover{
+    background-color: rgb(216, 83, 50);
+    color: white;
+    box-shadow: 2px 2px 5px 0px #DD6B4D;
+}
+
+.imgs{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.press-title:hover{
+    color: #DD6B4D !important;
+}
+
+.btn{
+    background-color: #dd6b4d;
+    color: white;
+}
+
+.btn:hover{
+    background-color: rgb(216, 83, 50);
+    color: white;
+    box-shadow: 2px 2px 5px 0px #DD6B4D;
+}
+
+.w3-bar-block{
+    background-color: rgb(246, 252, 223) !important;
+}
+
