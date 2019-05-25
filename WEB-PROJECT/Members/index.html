@@ -8,23 +8,23 @@
 
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
 
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="../fonts/icomoon/style.css">
 
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/magnific-popup.css">
+  <link rel="stylesheet" href="../css/jquery-ui.css">
+  <link rel="stylesheet" href="../css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../css/owl.theme.default.min.css">
 
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="../css/bootstrap-datepicker.css">
 
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
 
-  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="../css/aos.css">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 
-  <link rel="stylesheet" href="css/An.css">
+  <link rel="stylesheet" href="../css/An.css">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
     integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -34,7 +34,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
   <div class="btn-arrow-top">
-    <a href="#home-section"><button class="btn btn-round"><i class="fas fa-angle-double-up"></i></button></a>
+    <a href="index.html"><button class="btn btn-round"><i class="fas fa-angle-double-up"></i></button></a>
   </div>
 
   <div class="site-wrap" id="home-section">
@@ -65,7 +65,7 @@
               <ul class="site-menu has-children js-clone-nav ml-auto d-none d-lg-block">
                 <li><a href="index.html" class="nav-link active">Home</a></li>
                 <li>
-                  <a href="./User/Vocabulary/Gioi-thieu.html" class="nav-link">Từ vựng</a>
+                  <a href="Vocabulary.html" class="nav-link">Từ vựng</a>
                   <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <h5 class="dropdown-header">Chủ đề</h5>
                       <a class="dropdown-item" href="#">Thức ăn</a>
@@ -80,34 +80,36 @@
                     Cấu trúc
                   </a>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="User/Grammar/Gioi-thieu-co-ban.html">Cơ bản</a>
-                    <a class="dropdown-item" href="User/Grammar/Gioi-thieu-nang-cao.html">Nâng cao</a>
+                    <a class="dropdown-item" href="../Members/Grammar/Basic.html">Cơ bản</a>
+                    <a class="dropdown-item" href="../Members/Grammar/Advanced.html">Nâng cao</a>
                   </div>
                 </li>
-                <li><a href="./User/Listening/Gioi-thieu.html" class=" nav-link">Luyện nghe</a></li>
-                <li><a href="./User/Films/not-signin-yet.html" class="nav-link">Xem phim phụ đề</a></li>
+                <li><a href="" class=" nav-link">Luyện nghe</a></li>
+                <li><a href="" class="nav-link">Xem phim phụ đề</a></li>
                 <li>
                   <a href="" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink"
                     data-toggle="dropdown">Bài kiểm tra</a>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="./User/Tests/Kiem-tra-trinh-do.html">Kiểm tra trình độ</a>
-                    <a class="dropdown-item" href="./User/Tests/Kiem-tra-co-ban.html">Cơ bản</a>
-                    <a class="dropdown-item" href="./User/Tests/Kiem-tra-nang-cao.html">Nâng cao</a>
+                    <a class="dropdown-item" href="../User/Tests/Kiem-tra-trinh-do.html">Kiểm tra trình độ</a>
+                    <a class="dropdown-item" href="">Cơ bản</a>
+                    <a class="dropdown-item" href="">Nâng cao</a>
                   </div>
                 </li>
-                <li><a href="./User/Tips/List.html" class=" nav-link">Tips </a></li>
+                <li><a href="../User/Tips/List.html" class=" nav-link">Tips </a></li>
               </ul>
             </nav>
           </div>
 
-
-
-          <div class="toggle-button align-items-center float-left">
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Đăng nhập</a>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Đăng kí</a>
-            <!-- <a href="#" class="site-menu-toggle p-5 js-menu-toggle text-black d-inline-block d-lg-none d-flex"><span class="icon-menu h3 m-0"></span></a> -->
-          </div>
-
+          <div class=" col-2 toggle-button mr-5">
+              <a href="#" class="float-right dropdown-toggle" role="button" data-toggle="dropdown"><i
+                  class="fas fa-user"></i>&nbsp;User</a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Chỉnh sửa thông tin</a>
+                <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+                <a class="dropdown-item" href="#">Đăng xuất</a>
+              </div>
+              <!-- <a href="#" class="site-menu-toggle p-5 js-menu-toggle text-black d-inline-block d-lg-none d-flex"><span class="icon-menu h3 m-0"></span></a> -->
+            </div>
         </div>
       </div>
 
@@ -555,18 +557,18 @@
   </div>
 
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/jquery.sticky.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/aos.js"></script>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/jquery-ui.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/owl.carousel.min.js"></script>
+  <script src="../js/jquery.magnific-popup.min.js"></script>
+  <script src="../js/jquery.sticky.js"></script>
+  <script src="../js/jquery.waypoints.min.js"></script>
+  <script src="../js/jquery.animateNumber.min.js"></script>
+  <script src="../js/aos.js"></script>
 
-  <script src="js/main.js"></script>
+  <script src="../js/main.js"></script>
 
 </body>
 
