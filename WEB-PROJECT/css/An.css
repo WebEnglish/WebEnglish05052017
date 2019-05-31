@@ -169,6 +169,7 @@ ul.site-nav{
 }
 
 .nav-link-2{
+    color: white;
     margin-top: 10px !important;
 }
 
@@ -176,13 +177,12 @@ ul.site-nav{
     color: rgb(234, 151, 255);
 }
 
-.nav-link-2:active{
+.nav-link-2.active{
     color: rgb(234, 151, 255);
 }
 
 .home{
-    margin-left: 204px;
-    width: 88%;
+    margin-left: 80px;
 }
 
 .row2{
@@ -192,4 +192,52 @@ ul.site-nav{
 
 .borde{
     border: 1px solid rgb(153, 153, 153);
+}
+
+#signinModal, #passModal, #logoutModal, #ThemCat-Modal, #delModal{
+    margin: auto;
+    width: 30%;
+}
+
+.word-table{
+    width: 100%;
+}
+
+/* table{
+    table-layout: auto;
+} */
+
+.col1{
+    width: 150px;
+}
+
+.col2{
+    width: 20px;
+}
+
+.img-sm{
+    width: 70px;
+    height: 50px;
+}
+
+tbody{
+    cursor: pointer;
+}
+
+.blog-content-2{
+    padding-left: 124px;
+}
+
+.fa-sort{
+    cursor: pointer;
+}
+
+.avatar-user{
+    width: 150px;
+    height: 150px;
+    border-radius: 10%;
+}
+
+.body-modal{
+    padding-left: 100px;
 }

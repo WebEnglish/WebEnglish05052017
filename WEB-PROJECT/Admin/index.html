@@ -33,17 +33,21 @@
 </head>
 
 <body>
-    <div class="content">
+    <div class="">
         <div class="sidebar col-12 col-md-3">
             <div class="site-logo text-center logo">
-                <a href=""><i class="fab fa-earlybirds"></i><b>ENGLISHWORLD</b></a>
+                <a href="index.html"><i class="fab fa-earlybirds"></i><b>ENGLISHWORLD</b></a>
             </div>
             <br>
             <hr>
             <div class="admin-avt text-center">
                 <img src="https://i.pinimg.com/originals/df/a6/d8/dfa6d8c83adc19313ae2e265ad851a3a.jpg" alt="avatar"
                     class="img-circle">
-                <p class="mt-2"><a href="" class="text-white"><b>Admin Việt An</b></a></p>
+                <p class="mt-2">
+                    <a href="" class="text-white" data-toggle="modal" data-target="#inforModal">
+                        <b>Admin Việt An</b>
+                    </a>
+                </p>
             </div>
             <hr>
             <div class="sitebar-menu">
@@ -51,7 +55,7 @@
                     <h5><b>Quản Lý</b></h5>
                     <ul class="site-nav">
                         <li>
-                            <a class="nav-link-2" href=""><i class="fas fa-home"></i> Home</a>
+                            <a class="nav-link-2 active" href="index.html"><i class="fas fa-home"></i> Home</a>
                         </li>
                         <br>
                         <li>
@@ -60,11 +64,11 @@
                             </a>
                             <div id="target1" class="collapse">
                                 <ul class="">
-                                    <li><a class="nav-link-2 active" href="">Bài từ vựng</a></li><br>
-                                    <li><a class="nav-link-2" href="">Bài ngữ pháp</a></li><br>
-                                    <li><a class="nav-link-2" href="">Bài nghe</a></li><br>
-                                    <li><a class="nav-link-2" href="">Bài kiểm tra</a></li><br>
-                                    <li><a class="nav-link-2" href="">Bài viết</a></li>
+                                    <li><a class="nav-link-2" href="quan-ly-tu-vung.html">Từ vựng</a></li><br>
+                                    <li><a class="nav-link-2" href="quan-ly-ngu-phap.html">Ngữ pháp</a></li><br>
+                                    <li><a class="nav-link-2" href="quan-ly-bai-nghe.html">Luyện nghe</a></li><br>
+                                    <li><a class="nav-link-2" href="quan-ly-bai-kiem-tra.html">Bài kiểm tra</a></li><br>
+                                    <li><a class="nav-link-2" href="quan-ly-bai-viet.html/">Bài viết</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -75,62 +79,158 @@
                             </a>
                             <div id="target2" class="collapse">
                                 <ul class="">
-                                    <li><a class="nav-link-2" href="">Quản lý thành viên</a></li><br>
-                                    <li><a class="nav-link-2" href="">Quản lý Admin</a></li>
+                                    <li><a class="nav-link-2" href="quan-ly-nguoi-dung.html">Quản lý thành viên</a></li>
+                                    <br>
+                                    <!-- <li><a class="nav-link-2" href="">Quản lý Admin</a></li> -->
                                 </ul>
                             </div>
                         </li>
+                        <br>
                     </ul>
                 </div>
 
             </div>
         </div>
 
-        <div class="home container col-12">
-            <div class="row2">
-                <nav class="navbar navbar-dark bg-dark">
-                    <div class="">
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                        </form>
+        <div class="blog-content-2">
+            <div class="home row">
+                <div class=" col-12 col-md-12 mx-auto ">
+                    <nav class="navbar navbar-dark bg-dark">
+                        <div class="">
+                            <form class="form-inline">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                        <span class="navbar-text mr-3">
+                            <a href="" class="nav-link" data-toggle="modal" data-target="#logoutModal"> <i
+                                    class="fas fa-door-open"></i> Đăng xuất</a>
+                        </span>
+                    </nav>
+
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-md-2 mb-2 mt-2 mr-5 borde bg-light">
+                            <div class="block-counter-1">
+                                <span class="number text-black"><span data-number="1">5493</span></span>
+                                <span class="caption text-black">Lượt truy cập</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 mb-2 mt-2 mr-5 borde bg-light">
+                            <div class="block-counter-1">
+                                <span class="number text-black"><span data-number="1">1034</span></span>
+                                <span class="caption text-black">Lượt bình luận</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 mb-2 mt-2 mr-5 borde bg-light">
+                            <div class="block-counter-1">
+                                <span class="number text-black"><span data-number="1000">2030</span></span>
+                                <span class="caption text-black">Thành viên</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 mb-2 mt-2 mr-5 borde bg-light">
+                            <div class="block-counter-1">
+                                <span class="number text-black"><span data-number="1000">340</span></span>
+                                <span class="caption text-black">Người đăng ký mới</span>
+                            </div>
+                        </div>
                     </div>
-                    <span class="navbar-text mr-3">
-                        <a href="" class="nav-link"> <i class="fas fa-door-open"></i> Đăng xuất</a>
-                    </span>
-                </nav>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-2 mb-2 mt-2 mr-5 borde bg-light">
-                    <div class="block-counter-1">
-                        <span class="number text-black"><span data-number="1">5493</span></span>
-                        <span class="caption text-black">Lượt truy cập</span>
+                    <hr>
+
+                    <div class="col-md-9">
+                        <h4 class="text-black">Biểu Đồ Truy Cập Trong Tuần</h4>
+                        <p>Chart</p>
                     </div>
-                </div>
-                <div class="col-md-2 mb-2 mt-2 mr-5 borde bg-light">
-                    <div class="block-counter-1">
-                        <span class="number text-black"><span data-number="1">1034</span></span>
-                        <span class="caption text-black">Lượt bình luận</span>
-                    </div>
-                </div>
-                <div class="col-md-2 mb-2 mt-2 mr-5 borde bg-light">
-                    <div class="block-counter-1">
-                        <span class="number text-black"><span data-number="1000">2030</span></span>
-                        <span class="caption text-black">Thành viên</span>
-                    </div>
-                </div>
-                <div class="col-md-2 mb-2 mt-2 mr-5 borde bg-light">
-                    <div class="block-counter-1">
-                        <span class="number text-black"><span data-number="1000">340</span></span>
-                        <span class="caption text-black">Người đăng ký mới</span>
-                    </div>
+
                 </div>
             </div>
         </div>
-        
     </div>
 
 
+
+    <!-- modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-black" id="logoutModalLabel"><b>ĐĂNG XUẤT</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn thật sự muốn đăng xuất?
+                </div>
+                <div class="col-md-12 p-3 text-center">
+                    <button class="btn btn-exit" onclick="LogOut()">Đồng ý </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="infor-ModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-black" id="infor-ModalLabel"><b>THÔNG TIN CHI TIẾT</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <form action="#" method="GET" class="d-flex justify-content-center">
+                            <div class="col-md-12 d-flex flex-nowrap">
+                                <div class="col-md-2 text-center">
+                                    <img class="avatar-user"
+                                        src="https://i.pinimg.com/originals/df/a6/d8/dfa6d8c83adc19313ae2e265ad851a3a.jpg"
+                                        alt="">
+                                    <button class="btn btn-circle text-center ml-5 mt-2"><i class="fas fa-tools"></i>
+                                        Đổi</button>
+                                </div>
+                                <div class="row col-md-10 body-modal">
+                                    <div class="col-md-12 disable">
+                                        Họ và tên:
+                                        <input type="text" class="form-control border" value="Nguyễn Thị Việt An">
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        Ngày sinh
+                                        <input type="date" class="form-control border" value="03/03/1998">
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        Email:
+                                        <input type="text" class="form-control border" value="anh.vy98@gmail.com">
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        Mật khẩu:
+                                        <input type="password" class="form-control border" value="ntva3598">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-12 p-3 text-center">
+                    <button class="btn btn-fix">Chỉnh sửa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function LogOut() {
+            window.location.href = '../index.html';
+
+            // $("tbody").delegate("tr", "click", function () {
+            //     $('.active').removeClass('active');
+            //     $(this).toggleClass("active");
+            // });
+        }
+
+    </script>
 
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/jquery-ui.js"></script>
