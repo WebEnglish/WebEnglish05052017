@@ -26,6 +26,7 @@
 
     <link rel="stylesheet" href="../../css/An.css">
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
@@ -56,16 +57,16 @@
 
 
                     <div class="site-logo">
-                        <a href="../../index.html" class="text-black"><span class="text-primary">EnglishWorld</a>
+                        <a href="../index.html" class="text-black"><span class="text-primary">EnglishWorld</a>
                     </div>
 
                     <div class="col-12">
                         <nav class="site-navigation text-center" role="navigation">
 
                             <ul class="site-menu has-children js-clone-nav ml-auto d-none d-lg-block">
-                                <li><a href="../../index.html" class="nav-link">Home</a></li>
+                                <li><a href="../index.html" class="nav-link">Home</a></li>
                                 <li>
-                                    <a href="../../User/Vocabulary/Gioi-thieu.html" class="nav-link">Từ vựng</a>
+                                    <a href="../Vocabulary.html" class="nav-link">Từ vựng</a>
                                     <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <h5 class="dropdown-header">Chủ đề</h5>
                       <a class="dropdown-item" href="#">Thức ăn</a>
@@ -80,13 +81,12 @@
                                         Cấu trúc
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="User/Grammar/Gioi-thieu-co-ban.html">Cơ bản</a>
-                                        <a class="dropdown-item" href="User/Grammar/Gioi-thieu-nang-cao.html">Nâng
-                                            cao</a>
+                                        <a class="dropdown-item" href="../Grammar/Basic.html">Cơ bản</a>
+                                        <a class="dropdown-item" href="../Grammar/Advanced.html">Nâng cao</a>
                                     </div>
                                 </li>
-                                <li><a href="../../User/Listening/Gioi-thieu.html" class=" nav-link">Luyện nghe</a></li>
-                                <li><a href="../../User/Films/not-signin-yet.html" class="nav-link">Xem phim phụ đề</a>
+                                <li><a href="../Listening/Gioi-thieu.html" class=" nav-link">Luyện nghe</a></li>
+                                <li><a href="../Films/coming-soon.html" class="nav-link">Xem phim phụ đề</a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link dropdown-toggle active" role="button"
@@ -102,16 +102,28 @@
                         </nav>
                     </div>
 
-                    <div class="toggle-button align-items-center float-left">
-                        <a href="" class="mr-3" role="button" id="dropdownMenuLink" data-toggle="dropdown"><i
+                    <div class="toggle-button col-md-2">
+                        <a href="" class="" role="button" id="dropdownMenuLink1" data-toggle="dropdown"><i
                                 class="fas fa-search"></i></a>
-                        <input class="form-control abc pl-3 dropdown-menu" aria-labelledby="dropdownMenuLink"
+                        <input class="form-control abc pl-3 dropdown-menu" aria-labelledby="dropdownMenuLink1"
                             type="search" placeholder="Search" aria-label="Search">
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#signinModal">Đăng
-                            nhập</a>
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">Đăng kí</a>
+                    </div>
+
+                    <div class=" col-1 toggle-button mr-5">
+                        <a href="#" class=" dropdown-toggle" role="button" data-toggle="dropdown"><i
+                                class="fas fa-user"></i>&nbsp;User</a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
+                            aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#infoModal">Chỉnh sửa
+                                thông tin</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#passModal">Đổi mật
+                                khẩu</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Đăng
+                                xuất</a>
+                        </div>
                         <!-- <a href="#" class="site-menu-toggle p-5 js-menu-toggle text-black d-inline-block d-lg-none d-flex"><span class="icon-menu h3 m-0"></span></a> -->
                     </div>
+
                 </div>
             </div>
         </header>
@@ -121,7 +133,7 @@
             <div class="shadow col-12 pb-3 text-black">
                 <form>
                     <div>
-                        <label> <b>Part 2: <br></b>
+                        <label> <b>Part 1: <br></b>
                             <b>Section 1: (Questions 1 – 20)<i>Choose the correct answer (A, B, C or D) for each
                                     sentence.</i></b></label>
 
@@ -221,12 +233,12 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
+        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG NHẬP</b></h5>
+                        <h5 class="modal-title text-black" id="infoModalLabel"><b>CHỈNH SỬA THÔNG TIN CÁ NHÂN</b></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -234,18 +246,30 @@
                     <div class="modal-body p-5">
                         <form action="#" method="post">
                             <div class="form-group row">
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control border" placeholder="Nhập Email">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control border" value="Nguyễn Thị Việt An">
                                 </div>
-                                <div class="col-md-12 mt-5">
-                                    <input type="text" class="form-control border" placeholder="Nhập mật khẩu">
+                                <div class="col-md-6">
+                                    <input id="date" type="date" class="form-control border" value="03/05/1998">
+                                </div>
+                                <div class="col-md-12 mt-4">
+                                    <input type="text" class="form-control border" value="anh.vy98@gmail.com">
+                                    <div class="col-md-6" style="color: rgb(252, 69, 69)">
+                                        <label>(*) Bắt buộc</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <input type="password" class="form-control border" value="ntva3598">
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <input type="password" class="form-control border" value="ntva3598">
                                 </div>
                             </div>
                     </div>
                     <div class="form-group row justify-content-center">
                         <div class="col-md-10">
                             <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5"
-                                value="Đăng nhập">
+                                value="Chỉnh sửa">
                         </div>
                     </div>
                     </form>
@@ -253,43 +277,34 @@
             </div>
         </div>
 
-        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+        <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG KÝ</b></h5>
+                        <h5 class="modal-title text-black" id="passModalLabel"><b>Đổi mật khẩu</b></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body p-5">
+                    <div class="modal-body p-4">
                         <form action="#" method="post">
                             <div class="form-group row">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control border" placeholder="Nhập họ tên">
-                                </div>
-                                <div class="col-md-6">
-                                    <input id="date" type="date" class="form-control border"
-                                        placeholder="Nhập ngày sinh">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control border" placeholder="Mật khẩu cũ">
                                 </div>
                                 <div class="col-md-12 mt-4">
-                                    <input type="text" class="form-control border" placeholder="Nhập Email">
-                                    <div class="col-md-6" style="color: rgb(252, 69, 69)">
-                                        <label>(*) Bắt buộc</label>
-                                    </div>
+                                    <input type="text" class="form-control border" placeholder="Mật khẩu mới">
                                 </div>
-                                <div class="col-md-6 mt-2">
-                                    <input type="password" class="form-control border" placeholder="Nhập mật khẩu">
-                                </div>
-                                <div class="col-md-6 mt-2">
-                                    <input type="password" class="form-control border" placeholder="Nhập lại mật khẩu">
+                                <div class="col-md-12 mt-4">
+                                    <input type="text" class="form-control border" placeholder="Nhập lại mật khẩu mới">
                                 </div>
                             </div>
                     </div>
                     <div class="form-group row justify-content-center">
                         <div class="col-md-10">
-                            <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Đăng ký">
+                            <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5"
+                                value="Xác nhận">
                         </div>
                     </div>
                     </form>
@@ -297,6 +312,37 @@
             </div>
         </div>
 
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-black" id="logoutModalLabel"><b>ĐĂNG XUẤT</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Bạn thật sự muốn đăng xuất?
+                    </div>
+                    <div class="col-md-12 p-3 text-center">
+                        <button class="btn btn-exit" onclick="LogOut()">Đồng ý </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            function LogOut() {
+                window.location.href = '../../index.html';
+
+                // $("tbody").delegate("tr", "click", function () {
+                //     $('.active').removeClass('active');
+                //     $(this).toggleClass("active");
+                // });
+            }
+
+        </script>
 
         <script src="../../js/jquery-3.3.1.min.js"></script>
         <script src="../../js/jquery-ui.js"></script>
