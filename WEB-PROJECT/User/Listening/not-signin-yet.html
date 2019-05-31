@@ -101,12 +101,12 @@
 
 
           <div class="toggle-button align-items-center float-left">
-              <a href="" class="mr-3" role="button" id="dropdownMenuLink" data-toggle="dropdown"><i
+            <a href="" class="mr-3" role="button" id="dropdownMenuLink" data-toggle="dropdown"><i
                 class="fas fa-search"></i></a>
             <input class="form-control abc pl-3 dropdown-menu" aria-labelledby="dropdownMenuLink" type="search"
               placeholder="Search" aria-label="Search">
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Đăng nhập</a>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Đăng kí</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#signinModal">Đăng nhập</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">Đăng kí</a>
             <!-- <a href="#" class="site-menu-toggle p-5 js-menu-toggle text-black d-inline-block d-lg-none d-flex"><span class="icon-menu h3 m-0"></span></a> -->
           </div>
 
@@ -139,88 +139,131 @@
     </section>
 
     <div class="contain-button">
-        <button class="btn btn-next">Bài tiếp theo <i class="fas fa-caret-right"></i></button>
+      <button class="btn btn-next">Bài tiếp theo <i class="fas fa-caret-right"></i></button>
     </div>
 
 
     <footer class="site-footer footer-edit">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 text-center">
-  
-              <div class="mb-5">
-                <h2 class="footer-heading mb-4 text-center">Subscribe để nhận được thông báo từ chúng tôi</h2>
-                <form action="#" method="post">
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control border-secondary text-black bg-transparent"
-                      placeholder="Nhập Email của bạn" aria-label="Nhập Email của bạn" aria-describedby="button-addon2"
-                      style="margin-left: 20px;">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary text-white" type="button" id="button-addon2">Subscribe</button>
-                    </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <div class="mb-5">
+              <h2 class="footer-heading mb-4 text-center">Subscribe để nhận được thông báo từ chúng tôi</h2>
+              <form action="#" method="post">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-secondary text-black bg-transparent"
+                    placeholder="Nhập Email của bạn" aria-label="Nhập Email của bạn" aria-describedby="button-addon2"
+                    style="margin-left: 20px;">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary text-white" type="button" id="button-addon2">Subscribe</button>
                   </div>
-              </div>
-  
-  
-              <h2 class="footer-heading mb-4">Follow Us</h2>
-              <a href="#about-section" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-  
-              </form>
+                </div>
             </div>
-          </div>
-          <div class="row pt-5 mt-5 text-center">
-            <div class="col-md-12">
-              <div class="border-top pt-5">
-                <p>
-                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                  Copyright &copy;
-                  <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-                  with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                    target="_blank">Colorlib</a>
-                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-              </div>
-            </div>
-  
+
+
+            <h2 class="footer-heading mb-4">Follow Us</h2>
+            <a href="#about-section" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
+            <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+            <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+
+            </form>
           </div>
         </div>
-      </footer>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+              <p>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+                with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                  target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
 
   </div>
 
-   <!-- Modal -->
-   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-   aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h5 class="modal-title text-black" id="exampleModalLabel"><b>ĐĂNG NHẬP</b></h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body p-5">
-         <form action="#" method="post">
-           <div class="form-group row">
-             <div class="col-md-12">
-               <input type="text" class="form-control border" placeholder="Nhập Email">
-             </div>
-             <div class="col-md-12 mt-5">
-               <input type="text" class="form-control border" placeholder="Nhập mật khẩu">
-             </div>
-           </div>
-       </div>
-       <div class="form-group row justify-content-center">
-         <div class="col-md-10">
-           <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Đăng nhập">
-         </div>
-       </div>
-       </form>
-     </div>
-   </div>
- </div>
+  <!-- Modal -->
+  <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG NHẬP</b></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-5">
+          <form action="#" method="post">
+            <div class="form-group row">
+              <div class="col-md-12">
+                <input type="text" class="form-control border" placeholder="Nhập Email">
+              </div>
+              <div class="col-md-12 mt-5">
+                <input type="text" class="form-control border" placeholder="Nhập mật khẩu">
+              </div>
+            </div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <div class="col-md-10">
+            <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Đăng nhập">
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG KÝ</b></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-5">
+          <form action="#" method="post">
+            <div class="form-group row">
+              <div class="col-md-6">
+                <input type="text" class="form-control border" placeholder="Nhập họ tên">
+              </div>
+              <div class="col-md-6">
+                <input id="date" type="date" class="form-control border" placeholder="Nhập ngày sinh">
+              </div>
+              <div class="col-md-12 mt-4">
+                <input type="text" class="form-control border" placeholder="Nhập Email">
+                <div class="col-md-6" style="color: rgb(252, 69, 69)">
+                  <label>(*) Bắt buộc</label>
+                </div>
+              </div>
+              <div class="col-md-6 mt-2">
+                <input type="password" class="form-control border" placeholder="Nhập mật khẩu">
+              </div>
+              <div class="col-md-6 mt-2">
+                <input type="password" class="form-control border" placeholder="Nhập lại mật khẩu">
+              </div>
+            </div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <div class="col-md-10">
+            <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Đăng ký">
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <script src="../../js/jquery-3.3.1.min.js"></script>
   <script src="../../js/jquery-ui.js"></script>

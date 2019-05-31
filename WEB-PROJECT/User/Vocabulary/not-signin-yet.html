@@ -105,8 +105,8 @@
                 class="fas fa-search"></i></a>
             <input class="form-control abc pl-3 dropdown-menu" aria-labelledby="dropdownMenuLink" type="search"
               placeholder="Search" aria-label="Search">
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Đăng nhập</a>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Đăng kí</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#signinModal">Đăng nhập</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">Đăng kí</a>
             <!-- <a href="#" class="site-menu-toggle p-5 js-menu-toggle text-black d-inline-block d-lg-none d-flex"><span class="icon-menu h3 m-0"></span></a> -->
           </div>
 
@@ -222,12 +222,12 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-black" id="exampleModalLabel"><b>ĐĂNG NHẬP</b></h5>
+          <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG NHẬP</b></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -246,6 +246,49 @@
         <div class="form-group row justify-content-center">
           <div class="col-md-10">
             <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Đăng nhập">
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG KÝ</b></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-5">
+          <form action="#" method="post">
+            <div class="form-group row">
+              <div class="col-md-6">
+                <input type="text" class="form-control border" placeholder="Nhập họ tên">
+              </div>
+              <div class="col-md-6">
+                <input id="date" type="date" class="form-control border" placeholder="Nhập ngày sinh">
+              </div>
+              <div class="col-md-12 mt-4">
+                <input type="text" class="form-control border" placeholder="Nhập Email">
+                <div class="col-md-6" style="color: rgb(252, 69, 69)">
+                  <label>(*) Bắt buộc</label>
+                </div>
+              </div>
+              <div class="col-md-6 mt-2">
+                <input type="password" class="form-control border" placeholder="Nhập mật khẩu">
+              </div>
+              <div class="col-md-6 mt-2">
+                <input type="password" class="form-control border" placeholder="Nhập lại mật khẩu">
+              </div>
+            </div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <div class="col-md-10">
+            <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Đăng ký">
           </div>
         </div>
         </form>
