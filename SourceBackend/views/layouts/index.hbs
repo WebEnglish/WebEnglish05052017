@@ -31,6 +31,8 @@
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
     integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 
 </head>
 
@@ -67,7 +69,7 @@
               <nav class="site-navigation text-center" role="navigation">
 
                 <ul class="site-menu has-children js-clone-nav ml-auto d-none d-lg-block">
-                  <li><a href="index.html" class="nav-link active">Home</a></li>
+                  <li><a href="/" class="nav-link active">Home</a></li>
                   <li>
                     <a href="/vocabulary" class="nav-link">Từ vựng</a>
                     <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -126,11 +128,7 @@
     </div>
 
     <!-- hiệu ứng carousel -->
-
     {{{body}}}
-
-
-
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -138,14 +136,13 @@
 
             <div class="mb-5">
               <h2 class="footer-heading mb-4 text-center">Subscribe để nhận được thông báo từ chúng tôi</h2>
-              <form action="#" method="post">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control border-secondary text-black bg-transparent"
-                    placeholder="Nhập Email của bạn" aria-label="Nhập Email của bạn" aria-describedby="button-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary text-white" type="button" id="button-addon2">Subscribe</button>
-                  </div>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control border-secondary text-black bg-transparent"
+                  placeholder="Nhập Email của bạn" aria-label="Nhập Email của bạn" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-primary text-white" type="button" id="button-addon2">Subscribe</button>
                 </div>
+              </div>
             </div>
 
 
@@ -154,7 +151,6 @@
             <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
             <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
 
-            </form>
           </div>
         </div>
         <div class="row pt-5 mt-5 text-center">
@@ -176,80 +172,92 @@
       </div>
     </footer>
   </div>
-  <!-- Modal -->
-  <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG NHẬP</b></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body p-5">
-          <form action="#" method="post">
+  <!-- Modal đăng nhập -->
+  <form method="POST" action="/login">
+    <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          {{#if err_message}}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{err_message}}
+          </div>
+          {{/if}}
+          <div class="modal-header">
+            <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG NHẬP</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body p-5">
             <div class="form-group row">
               <div class="col-md-12">
-                <input type="text" class="form-control border" placeholder="Nhập Email">
+                <input type="text" name="email" class="form-control border" placeholder="Nhập Email">
               </div>
               <div class="col-md-12 mt-5">
-                <input type="text" class="form-control border" placeholder="Nhập mật khẩu">
+                <input type="password" name="password" class="form-control border" placeholder="Nhập mật khẩu">
               </div>
             </div>
-        </div>
-        <div class="form-group row justify-content-center">
-          <div class="col-md-10">
-            <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Đăng nhập">
+          </div>
+          <div class="form-group row justify-content-center">
+            <div class="col-md-10">
+              <button type="submit" class="btn btn-block btn-primary text-white py-3 px-5">Đăng
+                nhập</button>
+            </div>
           </div>
         </div>
-        </form>
       </div>
     </div>
-  </div>
+  </form>
 
-  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG KÝ</b></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body p-5">
-          <form action="#" method="post">
+  <!-- Modal đăng ký -->
+  <form novalidatem method="POST" id="registerForm">
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG KÝ</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body p-5">
             <div class="form-group row">
               <div class="col-md-6">
-                <input type="text" class="form-control border" placeholder="Nhập họ tên">
+                <input type="text" name="HoTen" class="form-control border" placeholder="Nhập họ tên">
               </div>
               <div class="col-md-6">
-                <input id="date" type="date" class="form-control border" placeholder="Nhập ngày sinh">
+                <input id="date" name="bdate" type="date" class="form-control border" placeholder="Nhập ngày sinh">
               </div>
               <div class="col-md-12 mt-4">
-                <input type="text" class="form-control border" placeholder="Nhập Email">
+                <input type="text" name="email" class="form-control border" placeholder="Nhập Email">
                 <div class="col-md-6" style="color: rgb(252, 69, 69)">
-                  <label>(*) Bắt buộc</label>
+
                 </div>
               </div>
-              <div class="col-md-6 mt-2">
-                <input type="password" class="form-control border" placeholder="Nhập mật khẩu">
+              <div class="col-md-6 mt-4">
+                <input type="password" name="pass" class="form-control border" placeholder="Nhập mật khẩu">
               </div>
-              <div class="col-md-6 mt-2">
-                <input type="password" class="form-control border" placeholder="Nhập lại mật khẩu">
+              <div class="col-md-6 mt-4">
+                <input type="password" name="confirm" class="form-control border" placeholder="Nhập lại mật khẩu">
               </div>
             </div>
-        </div>
-        <div class="form-group row justify-content-center">
-          <div class="col-md-10">
-            <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Đăng ký">
           </div>
+          <div class="form-group row justify-content-center">
+            <div class="col-md-10">
+              <button type="submit" class="btn btn-block btn-primary text-white py-3 px-5"><a href="/register">Đăng
+                  ký</a></button>
+            </div>
+          </div>
+
         </div>
-        </form>
       </div>
     </div>
-  </div>
+  </form>
 
   <script src="/js/jquery-3.3.1.min.js"></script>
   <script src="/js/jquery-ui.js"></script>
@@ -261,8 +269,69 @@
   <script src="/js/jquery.waypoints.min.js"></script>
   <script src="/js/jquery.animateNumber.min.js"></script>
   <script src="/js/aos.js"></script>
-
   <script src="/js/main.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+  <script>
+    $(function () {
+      $('#registerForm').validate({
+        rules: {
+          HoTen: {
+            required: true
+          },
+          email: {
+            required: true,
+            email: true,
+            remote: {
+              url: '/is-available'
+            }
+          },
+          bdate: {
+            required: true
+          },
+          pass: {
+            required: true,
+            minlength: 6
+          },
+          confirm: {
+            required: true,
+            equalTo: $('[name="pass"]')
+          }
+        },
+        messages: {
+          HoTen: {
+            required: 'Nhập chính xác tên người dùng'
+          },
+          email: {
+            required: 'Nhập chính xác email người dùng',
+            email: 'Nhập chính xác email người dùng',
+            remote: 'Email đã tồn tại'
+          },
+          bdate: {
+            required: 'Nhập chính xác ngày tháng năm sinh'
+          },
+          pass: {
+            required: 'Nhập chính xác mật khẩu',
+            minlength: 'Yêu cầu mật khẩu >6 kí tự'
+          },
+          confirm: {
+            required: 'Nhập chính xác mật khẩu',
+            equalTo: 'Mật khẩu không khớp nhau'
+          }
+        },
+        errorElement: 'small',
+        errorClass: 'col help-block text-danger',
+        highlight: function (e) {
+          $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: function (e) {
+          $(e).removeClass('is-invalid').addClass('is-valid');
+        }
+      })
+    })
+  </script>
 
 </body>
 
