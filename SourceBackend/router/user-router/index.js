@@ -60,24 +60,13 @@ router.get('/KiemTraNangCao', (req,res)=>{
     })
 })
 
-router.post('/login', (req,res,next)=>{
-    passport.authenticate('local', (err, email, info) => {
-        if (err)
-            return next(err);
 
-        if (!email) {
-            return res.render('/', {          
-                err_message: info.message,
-            })
-        }
-       
-        req.logIn(email, err => {
-            if (err)
-                return next(err);
-            return res.redirect('/listening');
-        });
-    })(req, res, next);
+router.post('/', (req, res, next) => {
+    req.logOut();
+    res.redirect('/login')
 })
+
+
 
 router.get('/is-available',(req,res,next) =>{
     var email = req.query.email;
@@ -89,17 +78,20 @@ router.get('/is-available',(req,res,next) =>{
     })
 })
 
-router.post('/', (req,res,next) =>{
+router.post('/register', (req,res,next) =>{
     var saltRounds = 10;
-    var b = req.body;
+    var nowDate = new Date();
     var hash = bcrypt.hashSync(req.body.pass, saltRounds) ;
-    var dob = req.body.bdate;
+    var dob =  moment(req.body.bdate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    var nowday = moment(nowDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
     var entity = {
         hoten: req.body.HoTen,
         ngaysinh: dob,
+        NgayTaoTK: nowday,
         matkhau: hash,
         email: req.body.email,
-        phanhe: 0
+        phanhe: 2,
+        Xoa: 0,
     }
     userModel.add(entity).then(id =>{
         res.redirect('/');

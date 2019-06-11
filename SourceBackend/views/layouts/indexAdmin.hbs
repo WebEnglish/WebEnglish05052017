@@ -8,28 +8,29 @@
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
 
-    <link rel="stylesheet" href="../fonts/icomoon/style.css">
+    <link rel="stylesheet" href="/fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/magnific-popup.css">
-    <link rel="stylesheet" href="../css/jquery-ui.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
 
-    <link rel="stylesheet" href="../css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
 
-    <link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css">
 
-    <link rel="stylesheet" href="../css/aos.css">
+    <link rel="stylesheet" href="/css/aos.css">
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="stylesheet" href="../css/An.css">
+    <link rel="stylesheet" href="/css/An.css">
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    {{{_sections.css}}}
 </head>
 
 <body>
@@ -44,8 +45,8 @@
                 <img src="https://i.pinimg.com/originals/df/a6/d8/dfa6d8c83adc19313ae2e265ad851a3a.jpg" alt="avatar"
                     class="img-circle">
                 <p class="mt-2">
-                    <a href="" class="text-white" data-toggle="modal" data-target="#inforModal">
-                        <b>Admin Việt An</b>
+                    <a href="/admin/profile" class="text-white">
+                        <b>{{authUser.hoten}}</b>
                     </a>
                 </p>
             </div>
@@ -64,11 +65,11 @@
                             </a>
                             <div id="target1" class="collapse">
                                 <ul class="">
-                                    <li><a class="nav-link-2" href="quan-ly-tu-vung.html">Từ vựng</a></li><br>
-                                    <li><a class="nav-link-2" href="quan-ly-ngu-phap.html">Ngữ pháp</a></li><br>
-                                    <li><a class="nav-link-2" href="quan-ly-bai-nghe.html">Luyện nghe</a></li><br>
-                                    <li><a class="nav-link-2" href="quan-ly-bai-kiem-tra.html">Bài kiểm tra</a></li><br>
-                                    <li><a class="nav-link-2" href="quan-ly-bai-viet.html/">Bài viết</a></li>
+                                    <li><a class="nav-link-2" href="/admin/tuvung">Từ vựng</a></li><br>
+                                    <li><a class="nav-link-2" href="/admin/tuvung">Ngữ pháp</a></li><br>
+                                    <li><a class="nav-link-2" href="/admin/tuvung">Luyện nghe</a></li><br>
+                                    <li><a class="nav-link-2" href="/admin/tuvung">Bài kiểm tra</a></li><br>
+                                    <li><a class="nav-link-2" href="/admin/tuvung">Bài viết</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -79,7 +80,7 @@
                             </a>
                             <div id="target2" class="collapse">
                                 <ul class="">
-                                    <li><a class="nav-link-2" href="quan-ly-nguoi-dung.html">Quản lý thành viên</a></li>
+                                    <li><a class="nav-link-2" href="/admin/taikhoan">Quản lý thành viên</a></li>
                                     <br>
                                     <!-- <li><a class="nav-link-2" href="">Quản lý Admin</a></li> -->
                                 </ul>
@@ -109,7 +110,7 @@
                         </span>
                     </nav>
 
-                    
+                    {{{body}}}
 
                 </div>
             </div>
@@ -119,25 +120,27 @@
 
 
     <!-- modal -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-black" id="logoutModalLabel"><b>ĐĂNG XUẤT</b></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Bạn thật sự muốn đăng xuất?
-                </div>
-                <div class="col-md-12 p-3 text-center">
-                    <button class="btn btn-exit" onclick="LogOut()">Đồng ý </button>
+    <form action="/" method="POST">
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-black" id="logoutModalLabel"><b>ĐĂNG XUẤT</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Bạn thật sự muốn đăng xuất?
+                    </div>
+                    <div class="col-md-12 p-3 text-center">
+                        <button type="submit" class="btn btn-exit">Đồng ý </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="infor-ModalLabel"
         aria-hidden="true">
@@ -191,7 +194,7 @@
 
     <script type="text/javascript">
         function LogOut() {
-            window.location.href = '../index.html';
+            window.location.href = '/index.html';
 
             // $("tbody").delegate("tr", "click", function () {
             //     $('.active').removeClass('active');
@@ -201,18 +204,18 @@
 
     </script>
 
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/jquery-ui.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/jquery.magnific-popup.min.js"></script>
-    <script src="../js/jquery.sticky.js"></script>
-    <script src="../js/jquery.waypoints.min.js"></script>
-    <script src="../js/jquery.animateNumber.min.js"></script>
-    <script src="../js/aos.js"></script>
-
-    <script src="../js/main.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/jquery.sticky.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.animateNumber.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/main.js"></script>
+    {{{_sections.js}}}
 
 </body>
 

@@ -1,0 +1,59 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+    $(function () {
+        $('#txtdate').datetimepicker({
+            format: 'd/m/Y',
+            timepicker: false,
+            mask: true,
+        });
+    })
+</script>
+{{/section}}
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title text-black" id="infor-ModalLabel"><b>THÔNG TIN CHI TIẾT</b></h5>
+        
+    </div>
+    <div class="modal-body">
+        <div class="col-md-12">
+            <form action="#" method="GET" class="d-flex justify-content-center">
+                <div class="col-md-12 d-flex flex-nowrap">
+                    <div class="col-md-2 text-center">
+                        <img class="avatar-user"
+                            src="https://i.pinimg.com/originals/df/a6/d8/dfa6d8c83adc19313ae2e265ad851a3a.jpg" alt="">
+                        <button class="btn btn-circle text-center ml-5 mt-2"><i class="fas fa-tools"></i>
+                            Đổi</button>
+                    </div>
+                    <div class="row col-md-10 body-modal">
+                        <div class="col-md-12 disable">
+                            Họ và tên:
+                            <input type="text" class="form-control border" value="{{authUser.hoten}}">
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            Ngày sinh
+                            <input id="txtdate" type="text" class="form-control border" value="{{authUser.ngaysinh}}">
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            Email:
+                            <input type="text" class="form-control border" value="{{authUser.email}}">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-12 p-3 text-center">
+        <button class="btn btn-fix">Chỉnh sửa</button>
+    </div>
+</div>

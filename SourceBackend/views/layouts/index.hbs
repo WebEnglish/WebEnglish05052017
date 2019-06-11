@@ -33,6 +33,8 @@
     integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 
 </head>
 
@@ -56,18 +58,13 @@
 
     <div id="sticky-wrapper" class="sticky-wrapper" style="height: 74px">
       <header class="site-navbar js-sticky-header site-navbar-target shadow-sm" role="banner">
-
         <div class="container">
           <div class="row align-items-center">
-
-
             <div class="site-logo">
               <a href="index.html" class="text-black"><span class="text-primary">EnglishWorld</a>
             </div>
-
             <div class="col-11">
               <nav class="site-navigation text-center" role="navigation">
-
                 <ul class="site-menu has-children js-clone-nav ml-auto d-none d-lg-block">
                   <li><a href="/" class="nav-link active">Home</a></li>
                   <li>
@@ -109,14 +106,40 @@
               </nav>
             </div>
 
-            <div class="toggle-button align-items-center float-left">
+            <div class="toggle-button d-flex flex-nowrap float-left">
               <a href="" class="mr-3" role="button" id="dropdownMenuLink" data-toggle="dropdown"><i
                   class="fas fa-search"></i></a>
               <input class="form-control abc pl-3 dropdown-menu" aria-labelledby="dropdownMenuLink" type="search"
                 placeholder="Search" aria-label="Search">
+              {{#if isAuthenticated}}
+              <form id="frmSignout" action="/" method="POST">
+                <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false" id="navbarDropdown"><i class="fas fa-user"></i>&nbsp;
+                  <b>{{authUser.hoten}}</b>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#signinModal">Đăng nhập</a>
+                  <a class="dropdown-item" href="/account/profile">
+                    <i class="fas fa-id-card"></i>
+                    Profile
+                  </a>
+
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/account/profile">
+                    <i class="fas fa-exchange-alt"></i>
+                    Profile
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="javascript: $('#frmSignout').submit();">
+                    <i class="fas fa-sign-out-alt"></i></i>
+                    Đăng xuất
+                  </a>
+                </div>
+              </form>
+              {{else}}
+              <a href="/login" class="btn btn-primary">Đăng nhập</a>
               <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">Đăng kí</a>
+              {{/if}}
               <!-- <a href="#" class="site-menu-toggle p-5 js-menu-toggle text-black d-inline-block d-lg-none d-flex"><span class="icon-menu h3 m-0"></span></a> -->
             </div>
 
@@ -129,6 +152,7 @@
 
     <!-- hiệu ứng carousel -->
     {{{body}}}
+
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -173,48 +197,10 @@
     </footer>
   </div>
   <!-- Modal đăng nhập -->
-  <form method="POST" action="/login">
-    <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-          {{#if err_message}}
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            {{err_message}}
-          </div>
-          {{/if}}
-          <div class="modal-header">
-            <h5 class="modal-title text-black" id="signinModalLabel"><b>ĐĂNG NHẬP</b></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body p-5">
-            <div class="form-group row">
-              <div class="col-md-12">
-                <input type="text" name="email" class="form-control border" placeholder="Nhập Email">
-              </div>
-              <div class="col-md-12 mt-5">
-                <input type="password" name="password" class="form-control border" placeholder="Nhập mật khẩu">
-              </div>
-            </div>
-          </div>
-          <div class="form-group row justify-content-center">
-            <div class="col-md-10">
-              <button type="submit" class="btn btn-block btn-primary text-white py-3 px-5">Đăng
-                nhập</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
+
 
   <!-- Modal đăng ký -->
-  <form novalidatem method="POST" id="registerForm">
+  <form novalidatem method="POST" action="/register" id="registerForm">
     <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -231,7 +217,7 @@
                 <input type="text" name="HoTen" class="form-control border" placeholder="Nhập họ tên">
               </div>
               <div class="col-md-6">
-                <input id="date" name="bdate" type="date" class="form-control border" placeholder="Nhập ngày sinh">
+                <input name="bdate" type="text" id="date" class="form-control border" placeholder="Nhập ngày sinh">
               </div>
               <div class="col-md-12 mt-4">
                 <input type="text" name="email" class="form-control border" placeholder="Nhập Email">
@@ -249,7 +235,7 @@
           </div>
           <div class="form-group row justify-content-center">
             <div class="col-md-10">
-              <button type="submit" class="btn btn-block btn-primary text-white py-3 px-5"><a href="/register">Đăng
+              <button type="submit" class="btn btn-block btn-primary text-white py-3 px-5"><a>Đăng
                   ký</a></button>
             </div>
           </div>
@@ -274,6 +260,15 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
+  <script>
+    $(function () {
+        $('#date').datetimepicker({
+            format: 'd/m/Y',
+            timepicker: false,
+            mask: true,
+        });
+    })
+</script>
   <script>
     $(function () {
       $('#registerForm').validate({
