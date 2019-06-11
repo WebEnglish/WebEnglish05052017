@@ -58,8 +58,10 @@ router.get('/:idCM', (req, res, next) => {
         abcModel.baiviet(),
         abcModel.chude(id),
         abcModel.dsbaiviet(limit, offset),
-        abcModel.countbaiviet(id)
-    ]).then(([row, row2, row3, count_rows]) => {
+        abcModel.countbaiviet(id),
+        abcModel.dsbaikt(id),
+        abcModel.loaibai(id)
+    ]).then(([row, row2, row3, count_rows, row4, row5]) => {
         for (const c of res.locals.MucHoc) {
             if (c.idLoaiBai === +id) {
                 c.isActive = true;
@@ -87,9 +89,17 @@ router.get('/:idCM', (req, res, next) => {
                 layout: './index'
             })
         }
-
-        if (id == 7 || id == 8 || id == 9) {
-            res.end("bai kiem tra");
+        if(id==7){
+            res.render("user/testtrinhdo",{
+                layout: './index'
+            })
+        }
+        if (id == 8 || id == 9) {
+            res.render("user/testlist",{
+                DSbaitest: row4,
+                Loaibai: row5,
+                layout: './index'
+            })
         }
         if (id == 10) {
             res.render("user/tips", {
@@ -118,8 +128,9 @@ router.get('/:idCM/:idCD', (req, res, next) => {
         abcModel.dsluyennghe(id2, limit, offset),
         abcModel.countdsbainghe(id2),
         abcModel.chitietbaiviet(id2, id),
-        abcModel.baivietlienquan(id2)
-    ]).then(([row, row2, row3, row4, row5, count_rows, row6, row7]) => {
+        abcModel.baivietlienquan(id2),
+        abcModel.baikt(id2)
+    ]).then(([row, row2, row3, row4, row5, count_rows, row6, row7, row8]) => {
         for (const c of res.locals.MucHoc) {
             if (c.idLoaiBai === +id) {
                 c.isActive = true;
@@ -169,8 +180,11 @@ router.get('/:idCM/:idCD', (req, res, next) => {
                 layout: './index'
             });
         }
-        if (id == 7 || id == 8 || id == 9) {
-            res.end("bai kiem tra");
+        if ( id == 8 || id == 9) {
+            res.render("user/test-detail", {
+                Chitietbaikt: row8,
+                layout: './index'
+            });
         }
         if (id == 10) {
             res.render("user/detail-tip", {

@@ -14,7 +14,7 @@ module.exports = {
     return db.load(`SELECT cd.* FROM chudebaihoc as cd, loaibai AS lb WHERE lb.idLoaiBai = cd.LoaiBai AND lb.idLoaiBai= ${idCM} AND lb.Xoa=0 AND cd.Xoa=0`)
   },
   tuvung: (idCD) => {
-    return db.load(`SELECT dstv.* FROM dstuvung AS dstv WHERE dstv.CDBaiHoc = ${idCD} AND dstv.Xoa=0`)
+    return db.load(`SELECT dstv.* FROM dstuvung AS dstv WHERE dstv.CDBaiHoc = ${idCD} AND dstv.Xoa=0`);
   },
   nguphap: (idCD) => {
     return db.load(`SELECT dsct.*, cd.TenBai FROM dscautruc AS dsct, chudebaihoc AS cd WHERE dsct.CDBaiHoc = ${idCD} AND cd.idCDBaiHoc = dsct.CDBaiHoc AND dsct.Xoa=0 AND cd.Xoa=0`)
@@ -39,5 +39,14 @@ module.exports = {
   },
   baivietlienquan: (idBV) => {
     return db.load(`SELECT t2.* FROM tips as t1, tips AS t2 WHERE t1.idTips = ${idBV} AND t2.idTips != t1.idTips ORDER BY t2.NgayDang DESC LIMIT 2`)
+  },
+  dsbaikt: (idCM)=>{
+    return db.load(`SELECT bt.* FROM baitest AS bt, loaibai AS lb WHERE bt.LoaiBai = ${idCM} AND bt.Xoa = 0 AND lb.idLoaiBai = bt.LoaiBai AND lb.Xoa=0 ORDER BY bt.NgayDang DESC`)
+  },
+  loaibai: (idCM)=>{
+    return db.load(`SELECT * FROM loaibai WHERE idLoaiBai = ${idCM}`)
+  },
+  baikt: (idBH) =>{
+    return db.load(`SELECT * FROM baitest AS bt WHERE bt.idBaiTest = ${idBH} AND bt.Xoa = 0`);
   }
 }

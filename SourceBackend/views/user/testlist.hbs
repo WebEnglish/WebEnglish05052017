@@ -1,47 +1,40 @@
-<section class="site-section">
-    <div class="w3-sidebar" style="top: 0px;">
-        <div class="w3-bar-block" id="leftmenuinner">
-            <div class="w3-container text-center">
-                <h3>CHỦ ĐỀ</h3>
-            </div>
-            {{#each Chude}}
-            <div class="w3-collapse w3-bar-item">
-                <a class="{{#if isSelected}}active{{/if}}" href="/{{LoaiBai}}/{{idCDBaiHoc}}">{{TenBai}}</a>
-            </div>
-            {{/each}}
+<div class="col-9 mt-5" style="margin-left:15%;">
+    {{#each Loaibai}}
+    <h2 class="text-black text-center">{{TenLoaiBai}}</h2>
+    {{/each}}
+    <div class="shadow-sm col-12 pb-3">
+        {{#each DSbaitest}}
+        <div class="item-content">
+            <a href="{{LoaiBai}}/{{idBaiTest}}">
+                <h3><b>{{TieuDe}}</b></h3>
+            </a>
+            Ngày đăng: {{format NgayDang}}
         </div>
-    </div>
-    {{#if isAuthenticated}}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mx-auto blog-content text-black">
-                {{#each Nguphap}}
-                <h2><b>{{TenBai}}</b></h2>
-                <hr>
-                
-                    {{{NoiDung}}}
-                
-                {{/each}}
-            </div>
-        </div>
-    </div>
-
-    <div class="contain-button mb-5 mr-4">
-        <button class="btn btn-next">Bài tiếp theo <i class="fas fa-caret-right"></i></button>
-    </div>
-    <br>
-    <hr>
-</section>
-{{else}}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 mx-auto blog-content">
-            <h2 class="text-black">Bạn chưa đăng nhập!</h2>
-            <p>Bạn cần phải đăng nhập để có thể xem được bài học.</p>
-        </div>
+        <hr>
+        {{/each}}
     </div>
 </div>
-{{/if}}
+{{!-- <nav aria-label="...">
+    <ul class="pagination justify-content-end mr-5">
+        <li class="page-item">
+            <span class="page-link">Previous</span>
+        </li>
+        {{#each this.pages}}
+        {{#if active}}
+        <li class="page-item active" aria-current="page">
+            <a href="javascript:;" class="page-link">
+                {{value}}
+            </a>
+        </li>
+        {{else}}
+        <li class="page-item"><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+        {{/if}}
+        {{/each}}
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav> --}}
 <footer class="site-footer footer-edit">
     <div class="container">
         <div class="row">
