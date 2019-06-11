@@ -1,0 +1,61 @@
+<section class="site-section">
+    <div class="w3-sidebar" style="top: 0px;">
+        <div class="w3-bar-block" id="leftmenuinner">
+            <div class="w3-container text-center">
+                <h3>CHỦ ĐỀ</h3>
+            </div>
+            {{#each Chude}}
+            <div class="w3-collapse w3-bar-item">
+                <a class="{{#if isSelected}}active{{/if}}" href="/{{LoaiBai}}/{{idCDBaiHoc}}">{{TenBai}}</a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mx-auto blog-content text-black">
+                {{#each Nguphap}}
+                <h2><b>{{TenBai}}</b></h2>
+                <hr>
+                
+                    {{{NoiDung}}}
+                
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+    <div class="contain-button mb-5 mr-4">
+        <button class="btn btn-next">Bài tiếp theo <i class="fas fa-caret-right"></i></button>
+    </div>
+    <br>
+    <hr>
+</section>
+<footer class="site-footer footer-edit">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="footer-heading mb-4">Follow Us</h2>
+                <a href="#about-section" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+            </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+                <div class="border-top pt-5">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                        is made
+                        with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                            target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>
