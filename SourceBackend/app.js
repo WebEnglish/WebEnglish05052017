@@ -32,17 +32,14 @@ app.engine('.hbs', exphbs({extname: '.hbs',
 app.set('view engine', 'hbs');
 app.use(require('./middlewares/auth-mdw'));
 app.use(express.static(__dirname+'/public'));
-app.use('/', require('./router/user-router/index'))
-app.use('/:idCM', require('./router/user-router/child'));
-app.use('/:idCM/:idCD', require('./router/user-router/child'));
-app.get('/',(req,res)=>{
-  res.render('trangchu');
-})
 app.use('/admin', require('./router/admin-router/indexAdmin'))
 app.use('/admin/taikhoan', require('./router/admin-router/QLTaiKhoan'))
 app.use('/admin/tuvung', require('./router/admin-router/QLTuVung'))
 app.use('/login', require('./router/user-router/login'))
 
+app.use('/', require('./router/user-router/index'))
+app.use('/:idCM', require('./router/user-router/child'));
+app.use('/:idCM/:idCD', require('./router/user-router/child'));
 
 
 app.listen(5517, () => {
