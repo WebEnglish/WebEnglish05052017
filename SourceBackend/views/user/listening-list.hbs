@@ -1,15 +1,5 @@
-{{#section 'js'}}
-<script>
-    $(document).ready(function () {
-        $("#showresult").click(function () {
-            $("#result").show();
-        });
-    }); 
-</script>
-{{/section}}
-
 <section class="site-section">
-    {{!-- <div class="w3-sidebar" style="top: 0px;">
+    <div class="w3-sidebar" style="top: 0px;">
         <div class="w3-bar-block" id="leftmenuinner">
             <div class="w3-container text-center">
                 <h3>CHỦ ĐỀ</h3>
@@ -20,65 +10,47 @@
             </div>
             {{/each}}
         </div>
-    </div> --}}
+    </div>
     <div class="container text-black">
         <div class="row">
-            <div class="col-md-12 ">
+            <div class="col-md-12 mx-auto blog-content">
                 <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    {{#each Bainghe}}
-                    <div>
-                        <h2 class="mx-auto">{{tenBai}}</h2>
+                    {{#each DSluyennghe}}
+                    <div class="item-content" style="font-size: 14px;height: 100px;">
+                        <a href="{{CDBaiHoc}}/{{idBaiNghe}}">
+                            <img style="width: 130px; height: 90px; float: left;border: 1px solid #eee;margin: 0 20px 10px 0;"
+                                src="{{HinhAnh}}">
+                            <b><u>{{tenBai}}</u></b>
+                        </a>
+                        <p>Click if you're ready</p>
                     </div>
-                    <br>
-                    <div class="text-center">
-                        <audio controls>
-                            <source src="{{FileAmThanh}}" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    <br>
-                    <div>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                                    aria-controls="contact" aria-selected="false">Question</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                    aria-controls="home" aria-selected="true">Script</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-
-                            <div class="tab-pane fade show active" id="contact" role="tabpanel"
-                                aria-labelledby="contact-tab">
-                                {{{BaiTap}}}
-
-                                <div class="col-md-12 text-center">
-                                    <a href="#" class="btn" id="showresult">Đáp án</a>
-                                </div>
-                                <div id="result" style="display: none">
-                                    <b>Đáp Án</b>
-                                    {{{DapAn}}}
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <p>{{{Script}}}</p>
-                            </div>
-                        </div>
-                    </div>
+                    <hr>
                     {{/each}}
-                </div>
-                <div class="col-md-12">
-                    <span class="col-md-5 float-left">
-                        <a href="#" class="btn"> <i class="far fa-hand-point-left"></i> Quay về</a>
-                    </span>
-                    <span class="col-md-7 d-flex justify-content-end">
-                        <a href="#" class="btn"> Bài tiếp theo <i class="far fa-hand-point-right"></i> </a>
-                    </span>
                 </div>
             </div>
         </div>
     </div>
+    <nav aria-label="...">
+        <ul class="pagination justify-content-end mr-5">
+            <li class="page-item">
+                <span class="page-link">Previous</span>
+            </li>
+            {{#each this.pages}}
+            {{#if active}}
+            <li class="page-item active" aria-current="page">
+                <a href="javascript:;" class="page-link">
+                    {{value}}
+                </a>
+            </li>
+            {{else}}
+            <li class="page-item"><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+            {{/if}}
+            {{/each}}
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
 </section>
 <footer class="site-footer footer-edit">
     <div class="container">
