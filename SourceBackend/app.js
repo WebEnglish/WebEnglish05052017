@@ -2,6 +2,8 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var bodyParser = require('body-parser')
 var moment = require('moment');
+var hbs_sections = require('express-handlebars-sections')
+
 
 var app = express();
 var morgan = require('morgan');
@@ -15,6 +17,8 @@ app.use(express.urlencoded());
 app.use(require('./middlewares/locals.mdw'));
 require('./middlewares/passport')(app);
 require('./middlewares/session')(app);
+require('./middlewares/passport')(app);
+
 app.use(bodyParser());
 
 app.engine('.hbs', exphbs({extname: '.hbs',
@@ -26,7 +30,7 @@ app.engine('.hbs', exphbs({extname: '.hbs',
   }}));
 
 app.set('view engine', 'hbs');
-
+app.use(require('./middlewares/auth-mdw'));
 app.use(express.static(__dirname+'/public'));
 app.use('/', require('./router/user-router/index'))
 app.use('/:idCM', require('./router/user-router/child'));
@@ -34,6 +38,10 @@ app.use('/:idCM/:idCD', require('./router/user-router/child'));
 app.get('/',(req,res)=>{
   res.render('trangchu');
 })
+app.use('/admin', require('./router/admin-router/indexAdmin'))
+app.use('/admin/taikhoan', require('./router/admin-router/QLTaiKhoan'))
+app.use('/admin/tuvung', require('./router/admin-router/QLTuVung'))
+app.use('/login', require('./router/user-router/login'))
 
 
 

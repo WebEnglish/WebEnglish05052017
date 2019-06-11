@@ -57,7 +57,7 @@ router.get('/:idCM', (req, res, next) => {
     Promise.all([
         abcModel.baiviet(),
         abcModel.chude(id),
-        abcModel.dsbaiviet(limit,offset),
+        abcModel.dsbaiviet(limit, offset),
         abcModel.countbaiviet(id)
     ]).then(([row, row2, row3, count_rows]) => {
         for (const c of res.locals.MucHoc) {
@@ -71,8 +71,8 @@ router.get('/:idCM', (req, res, next) => {
         if (total % limit > 0) nPages++;
         var pages = [];
         for (i = 1; i <= nPages; i++) {
-          var obj = { value: i, active: i === +page };
-          pages.push(obj);
+            var obj = { value: i, active: i === +page };
+            pages.push(obj);
         }
 
         if (id == 0) {
@@ -115,9 +115,9 @@ router.get('/:idCM/:idCD', (req, res, next) => {
         abcModel.chude(id),
         abcModel.tuvung(id2),
         abcModel.nguphap(id2),
-        abcModel.dsluyennghe(id2,limit,offset),
+        abcModel.dsluyennghe(id2, limit, offset),
         abcModel.countdsbainghe(id2),
-        abcModel.chitietbaiviet(id2,id),
+        abcModel.chitietbaiviet(id2, id),
         abcModel.baivietlienquan(id2)
     ]).then(([row, row2, row3, row4, row5, count_rows, row6, row7]) => {
         for (const c of res.locals.MucHoc) {
@@ -137,8 +137,8 @@ router.get('/:idCM/:idCD', (req, res, next) => {
         if (total % limit > 0) nPages++;
         var pages = [];
         for (i = 1; i <= nPages; i++) {
-          var obj = { value: i, active: i === +page };
-          pages.push(obj);
+            var obj = { value: i, active: i === +page };
+            pages.push(obj);
         }
 
         if (id == 0) {
@@ -173,7 +173,7 @@ router.get('/:idCM/:idCD', (req, res, next) => {
             res.end("bai kiem tra");
         }
         if (id == 10) {
-            res.render("user/detail-tip",{
+            res.render("user/detail-tip", {
                 Chitiet: row6,
                 lienquan: row7,
                 layout: './index'
@@ -202,31 +202,50 @@ router.post('/login', (req, res, next) => {
 })
 
 router.get('/is-available', (req, res, next) => {
-    var email = req.query.email;
-    userModel.getPassbyEmail(email).then(rows => {
-        if (rows.length > 0) {
-            return res.json(false);
-        }
-        return res.json(true);
-    })
-})
 
-router.post('/', (req, res, next) => {
-    var saltRounds = 10;
-    var b = req.body;
-    var hash = bcrypt.hashSync(req.body.pass, saltRounds);
-    var dob = req.body.bdate;
-    var entity = {
-        hoten: req.body.HoTen,
-        ngaysinh: dob,
-        matkhau: hash,
-        email: req.body.email,
-        phanhe: 0
-    }
-    userModel.add(entity).then(id => {
-        res.redirect('/');
+    router.post('/', (req, res, next) => {
+        req.logOut();
+        res.redirect('/login')
     })
 
+
+
+    router.get('/is-available', (req, res, next) => {
+        var email = req.query.email;
+        userModel.getPassbyEmail(email).then(rows => {
+            if (rows.length > 0) {
+                return res.json(false);
+            }
+            return res.json(true);
+        })
+    })
+
+    router.post('/', (req, res, next) => {
+        var saltRounds = 10;
+        var b = req.body;
+        var hash = bcrypt.hashSync(req.body.pass, saltRounds);
+        var dob = req.body.bdate;
+        router.post('/register', (req, res, next) => {
+            var saltRounds = 10;
+            var nowDate = new Date();
+            var hash = bcrypt.hashSync(req.body.pass, saltRounds);
+            var dob = moment(req.body.bdate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            var nowday = moment(nowDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            var entity = {
+                hoten: req.body.HoTen,
+                ngaysinh: dob,
+                NgayTaoTK: nowday,
+                matkhau: hash,
+                email: req.body.email,
+                phanhe: 2,
+                Xoa: 0,
+            }
+            userModel.add(entity).then(id => {
+                res.redirect('/');
+            })
+
+        })
+    })
 })
 
 
