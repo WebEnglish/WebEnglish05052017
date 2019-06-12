@@ -35,6 +35,103 @@
         })
     })
 </script>
+
+<script>
+    $(function () {
+        $('#EditForm').validate({
+            rules: {
+                Cate: {
+                    required: true,
+                    remote: {
+                        url: '/admin/tuvung/is-exsist'
+                    }
+                }
+            },
+            messages: {
+
+                Cate: {
+                    required: 'Yêu cầu nhập tên loại',
+                    remote: 'Loại từ vựng đã tồn tại'
+                }
+            },
+            errorElement: 'small',
+            errorClass: 'col help-block text-danger',
+            highlight: function (e) {
+                $(e).removeClass('is-valid').addClass('is-invalid');
+            },
+            unhighlight: function (e) {
+                $(e).removeClass('is-invalid').addClass('is-valid');
+            }
+        })
+    })
+</script>
+
+<script>
+    $(function () {
+        $('#formAdd').validate({
+            rules: {
+                tentv: {
+                    required: true
+                },
+                CachPhatAm: {
+                    required: true
+                },
+                chude: {
+                    required: true
+                },
+                LoaiTu: {
+                    required: true
+                },
+                YNghia: {
+                    required: true
+                },
+                Vidu: {
+                    required: true
+                },
+                fileAmThanh: {
+                    required: true
+                },
+                fileHinh: {
+                    required: true
+                }
+            },
+            messages: {
+                tentv: {
+                    required: 'Nhập chính xác từ vựng'
+                },
+                CachPhatAm: {
+                    required: 'Nhập chính xác cách phát âm'
+                },
+                chude: {
+                    required: 'Nhập chính xác chủ đề'
+                },
+                LoaiTu: {
+                    required: 'Nhập chính xác loại từ'
+                },
+                YNghia: {
+                    required: 'Nhập chính xác ý nghĩa'
+                },
+                Vidu: {
+                    required: 'Nhập chính xác ví dụ'
+                },
+                fileAmThanh: {
+                    required: 'Nhập chính xác link âm thanh'
+                },
+                fileHinh: {
+                    required: 'Nhập chính xác link hình ảnh'
+                }
+            },
+            errorElement: 'small',
+            errorClass: 'col help-block text-danger',
+            highlight: function (e) {
+                $(e).removeClass('is-valid').addClass('is-invalid');
+            },
+            unhighlight: function (e) {
+                $(e).removeClass('is-invalid').addClass('is-valid');
+            }
+        })
+    })
+</script>
 {{/section}}
 
 
@@ -46,14 +143,6 @@
         <div class="col-md-9 d-flex flex-nowrap">
 
             <form method="POST" action="" id="formcate">
-                {{!-- <div class="col-md-12">
-                    <select id="select" name="LoaiTu" style="height: 30px">
-                        <option style="opacity:inherit">Chọn loại từ</option>
-                        {{#each this.chude}}
-                        <option {{#if isSelected}} selected {{/if}} value="{{idCDBaiHoc}}">{{TenBai}}</option>
-                        {{/each}}
-                    </select>
-                </div> --}}
                 <div class="col-md-12">
                     <select id="select" name="LoaiTu" style="height: 30px">
                         <option>Chọn loại từ</option>
@@ -65,6 +154,9 @@
                 <a href="#" data-toggle="modal" data-target="#ThemCat-Modal"><i class="fas fa-plus-circle"></i>
                     Thêm loại
                 </a>
+                {{!-- <a href="" id="editcate" data-toggle="modal" data-target="#EditCat-Modal">
+                  Chỉnh sửa
+                </a> --}}
             </form>
         </div>
         <div class="col-md-4 d-flex justify-content-start">
@@ -73,7 +165,7 @@
         </div>
     </div>
 
-    <form action="/admin/addCate" id="AddForm" method="POST">
+    <form action="/admin/tuvung/addCate" id="AddForm" method="POST">
         <div class="modal fade" id="ThemCat-Modal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -100,6 +192,34 @@
             </div>
         </div>
     </form>
+
+    {{!-- <form action="/admin/tuvung/EditCate" id="EditForm" method="POST">
+        <div class="modal fade" id="EditCat-Modal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-black" id="logoutModalLabel"><b>CHỈNH SỬA LOẠI TỪ VỰNG</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row ">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control border" name="Cate"
+                                    placeholder="Tên loại từ vựng">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 p-3 text-center">
+                        <button type="submit" class="btn btn-exit">Lưu lại</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form> --}}
 
 
     <div class="col-md-12 mt-3">
@@ -132,7 +252,7 @@
                     <td><img src="{{FileHinhAnh}}" alt="" class="img-sm"></td>
                     <td>
                         <a href="/admin/tuvung/delete/{{idTuVung}}" <i class="fas fa-minus-circle"></i></a>
-                        <a href=""><i class="fas fa-wrench"></i></a>
+                        <a href="/admin/tuvung/chinhsua/{{idTuVung}}"><i class="fas fa-wrench"></i></a>
 
                     </td>
                 </tr>
@@ -167,7 +287,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/admin/tuvung/them" method="post">
+                <form id="formAdd" action="/admin/themtv" method="post">
                     <div class="form-group row ml-5">
                         <div class="col-md-6">
                             <input name="tentv" type="text" class="form-control border" placeholder="Tên từ vựng">
@@ -187,7 +307,7 @@
                         </div>
                         <div class="col-md-5 mt-3">
                             <select name="LoaiTu" class="form-control border col-md-12">
-                                <option value="Loại từ">Loại từ</option>
+                                <option value="">Loại từ</option>
                                 <option value="Verb">Verb</option>
                                 <option value="Noun">Noun</option>
                                 <option value="Adjective">Adjective</option>
@@ -199,17 +319,17 @@
                             <input name="YNghia" type="text" class="form-control border" placeholder="Ý nghĩa">
                         </div>
                         <div class="col-md-11 mt-3">
-                            <input name="Vidu" type="text" class="form-control border" placeholder="Ví dụ">
+                            <textarea name="Vidu" class="form-control border" placeholder="Ví dụ"></textarea>
                         </div>
 
                         <div class="col-md-11 mt-3">
-                            File Âm thanh:
-                            <input name="fileAmThanh" type="file" class="form-control border"
-                                placeholder="File âm thanh">
+                            Link âm thanh:
+                            <input name="fileAmThanh" type="text" class="form-control border"
+                                placeholder="Link âm thanh">
                         </div>
                         <div class="col-md-11 mt-3">
-                            File Hình ảnh:
-                            <input name="fileHinh" type="file" class="form-control border" placeholder="File âm thanh">
+                            Link hình ảnh:
+                            <input name="fileHinh" type="text" class="form-control border" placeholder="Link hình ảnh">
                         </div>
 
                     </div>
@@ -221,59 +341,3 @@
         </div>
     </div>
 </div>
-
-
-{{!-- <div class=" fade" id="Them-Modal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-black" id="logoutModalLabel"><b>THÊM TỪ VỰNG</b></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="POST" action="/admin/tuvung/them">
-                <div class="modal-body">
-                    <div class="form-group row ml-5">
-                        <div class="col-md-4">
-                            <input type="text" name="tenTu" class="form-control border" placeholder="Tên từ vựng">
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="CachPhatAm" class="form-control border" placeholder="Cách phát âm">
-                        </div>
-                        <div class="col-md-4">
-                            <select name="loaiTu" class="form-control border col-md-7">
-                                <option>Loại từ</option>
-                                <option>Verb (Động từ)</option>
-                                <option>Noun (Danh từ)</option>
-                                <option>Adjective (Tính từ)</option>
-                                <option>Adverb (Trạng từ)</option>
-                                <option>Preposition (Giới từ)</option>
-                            </select>
-                        </div>
-                        <div class="col-md-11 mt-3">
-                            <input name="yNghia" type="text" class="form-control border" placeholder="Ý nghĩa">
-                        </div>
-                        <div class="col-md-11 mt-3">
-                            <input name="viDu" type="text" class="form-control border" placeholder="Ví dụ">
-                        </div>
-                        {{!-- <div class="col-md-11 mt-3">
-                                <input name="chude" type="text" class="form-control border" placeholder="Chủ đề">
-                            </div> --}}
-<div class="col-md-11 mt-3">
-    File Âm thanh:
-    <input name="fileAmThanh" type="file" class="form-control border" placeholder="File âm thanh">
-</div>
-<div class="col-md-11 mt-3">
-    File Hình ảnh:
-    <input name="fileHinh" type="file" class="form-control border" placeholder="File âm thanh">
-</div>
-</div>
-</div>
-<div class="col-md-12 p-3 text-center">
-    <button type="submit" class="btn btn-exit">Thêm</button>
-</div>
-</form>
-</div>
-</div>
-</div> --}}
