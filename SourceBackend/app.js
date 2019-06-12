@@ -43,7 +43,6 @@ app.use('/:idCM', require('./router/user-router/child'));
 app.use('/:idCM/:idCD', require('./router/user-router/child'));
 
 
-
 app.listen(5517, () => {
     console.log('server is running at http://localhost:5517');
 })
