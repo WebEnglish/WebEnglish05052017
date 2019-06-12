@@ -6,7 +6,11 @@ var passport = require('passport');
 var userModel = require('../../model/thanhvien.model');
 var abcModel = require('../../model/DSmuchoc.model');
 
+
+
+
 router.get('/', (req, res) => {
+  
 
     abcModel.baiviet()
         .then(row => {
