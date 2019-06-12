@@ -1,51 +1,48 @@
-<section class="site-section">
-    <div class="w3-sidebar" style="top: 0px;">
-        <div class="w3-bar-block" id="leftmenuinner">
-            <div class="w3-container text-center">
-                <h3>CHỦ ĐỀ</h3>
-            </div>
-            {{#each Chude}}
-            <div class="w3-collapse w3-bar-item">
-                <a class="{{#if isSelected}}active{{/if}}" href="/{{LoaiBai}}/{{idCDBaiHoc}}">{{TenBai}}</a>
-            </div>
-            {{/each}}
-        </div>
+{{#section 'js'}}
+<script>
+    $(document).ready(function () {
+        $("#showresult").click(function () {
+            $("#result").show();
+        });
+    }); 
+</script>
+{{/section}}
+
+{{#if isAuthenticated}}
+<div class="container col-9 mt-5">
+    {{#each Chitietbaikt}}
+    <h2 class="text-black text-center">{{TieuDe}}</h2>
+    <div class="shadow col-12 p-5 text-black">
+        {{{NoiDung}}}
     </div>
-    {{#if isAuthenticated}}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mx-auto blog-content text-black">
-                {{#each Nguphap}}
-                <h2><b>{{TenBai}}</b></h2>
-                <hr>
-                
-                    {{{NoiDung}}}
-                
-                {{/each}}
-            </div>
-        </div>
+    {{/each}}
+</div>
+<div class="d-flex flex-row justify-content-center mt-5">
+    <button class="btn btn-answer" id="showresult">Kiểm tra kết quả</button>
+</div>
+<div class="container col-9 mt-5">
+    <div class="shadow col-md-12 p-5 text-black" id="result" style="display: none">
+        {{#each Chitietbaikt}}
+        <h3><b>Đáp Án</b></h3>
+        {{{DapAn}}}
+        {{/each}}
     </div>
 
-    <div class="contain-button mb-5 mr-4">
-        <button class="btn btn-next">Bài tiếp theo <i class="fas fa-caret-right"></i></button>
+</div>
+{{!-- <div class="container">
+    <div class="comment-form-wrap shadow mt-5 col-12 pt-3">
+        <h3 class="">Bình luận</h3>
+        <form action="#" class="p-5 bg-light">
+            <div class="form-group">
+                <label for="message">Nhập ở đây</label>
+                <textarea name="comment" id="message" cols="15" rows="3" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Gửi" class="btn btn-primary py-2 px-3">
+            </div>
+        </form>
     </div>
-    <br>
-    {{!-- <div class="container">
-        <div class="comment-form-wrap shadow mt-5 col-12 pt-3">
-            <h3 class="">Bình luận</h3>
-            <form action="#" class="p-5 bg-light">
-                <div class="form-group">
-                    <label for="message">Nhập ở đây</label>
-                    <textarea name="comment" id="message" cols="30" rows="3" class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Gửi" class="btn btn-primary py-3 px-5">
-                </div>
-
-            </form>
-        </div>
-    </div> --}}
-</section>
+</div> --}}
 {{else}}
 <div class="container">
     <div class="row">
@@ -56,6 +53,7 @@
     </div>
 </div>
 {{/if}}
+
 <footer class="site-footer footer-edit">
     <div class="container">
         <div class="row">

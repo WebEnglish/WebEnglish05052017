@@ -32,6 +32,7 @@ app.engine('.hbs', exphbs({extname: '.hbs',
 app.set('view engine', 'hbs');
 app.use(require('./middlewares/auth-mdw'));
 app.use(express.static(__dirname+'/public'));
+
 app.use('/admin', require('./router/admin-router/indexAdmin'))
 app.use('/admin/taikhoan', require('./router/admin-router/QLTaiKhoan'))
 app.use('/admin/tuvung', require('./router/admin-router/QLTuVung'))

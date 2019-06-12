@@ -6,7 +6,7 @@
                 <div class="col-md-12 col-lg-7">
                     <h1>Welcome to EnglishWorld!</h1>
                     <p>Chúng ta hãy bắt đầu bằng 1 bài kiểm tra thử nhé!</p>
-                    <p><a href="./User/Tests/Kiem-tra-trinh-do.html"
+                    <p><a href="/7"
                             class="btn btn-outline-primary border-w-2 btn-md">Do
                             Test</a></p>
                 </div>
@@ -26,7 +26,7 @@
                     <p>Bạn là 1 người mới làm quen với tiếng Anh? Đừng quá lo lắng hãy đọc bài viết này để xác định cho
                         mình 1
                         con đường học tiếng Anh phù hợp nhé.</p>
-                    <p><a href="./User/Tips/bai-viet.html" class="btn btn-outline-primary border-w-2 btn-md">Đọc bài</a>
+                    <p><a href="/10/1" class="btn btn-outline-primary border-w-2 btn-md">Đọc bài</a>
                     </p>
                 </div>
             </div>
@@ -133,7 +133,8 @@
             <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" data-aos="fade-up">
                 <div class="block-team-member-1 text-center rounded">
                     <figure>
-                        <img src="images/person_1.jpg" alt="Image" class="img-fluid rounded-circle">
+                        <img src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.0-9/56222440_1845061852266274_49952063085346816_n.jpg?_nc_cat=110&_nc_oc=AQkjlNb_GJKfDSf_T-Dz96_fIswLqDR4Jv3HvL-rMWqjJlEg18YIfZp7x-OO-QfuVKnW8Nur3OesmRkVYnRyJ-U_&_nc_ht=scontent.fsgn5-3.fna&oh=abf99f211ca52db5b03e5f747f8c54c0&oe=5D7E3751" 
+                        alt="Image" class="img-fluid rounded-circle">
                     </figure>
                     <h3 class="font-size-20 text-black">Việt An</h3>
                     <span class="d-block font-gray-5 letter-spacing-1 text-uppercase font-size-12 mb-3">Phụ trách đăng
@@ -143,12 +144,8 @@
                         trang
                         Web?<br> Hãy liên lạc với tôi.</p>
                     <div class="block-social-1">
-                        <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
+                        <a href="https://www.facebook.com/An.IzZy.98" class="btn border-w-2 rounded primary-primary-outline--hover"><span
                                 class="icon-facebook"></span></a>
-                        <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
-                                class="icon-twitter"></span></a>
-                        <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
-                                class="icon-instagram"></span></a>
                     </div>
                 </div>
             </div>
@@ -156,7 +153,8 @@
             <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
                 <div class="block-team-member-1 text-center rounded">
                     <figure>
-                        <img src="images/person_2.jpg" alt="Image" class="img-fluid rounded-circle">
+                        <img src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.0-9/14953885_1812131219059752_5981326147913502976_n.jpg?_nc_cat=108&_nc_oc=AQl9NhvCGQFwcIkmwhaXhi6-VgvNkujw7L4XeB7r6ud7xfgnX5ecSj48gB4yei8mYSx0EEd_CpAfFBiLZJD_ZDC0&_nc_ht=scontent.fsgn5-5.fna&oh=c41fa759ced16eea5708e8a8ca51e440&oe=5D7F9F25" 
+                        alt="Image" class="img-fluid rounded-circle">
                     </figure>
                     <h3 class="font-size-20 text-black">Lê Hưng</h3>
                     <span class="d-block font-gray-5 letter-spacing-1 text-uppercase font-size-12 mb-3">Phụ trách giải
@@ -166,12 +164,8 @@
                         thể.
                         Bạn muốn trao đổi thêm? Hãy liên lạc với tôi.</p>
                     <div class="block-social-1">
-                        <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
+                        <a href="https://www.facebook.com/LCHung1997" class="btn border-w-2 rounded primary-primary-outline--hover"><span
                                 class="icon-facebook"></span></a>
-                        <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
-                                class="icon-twitter"></span></a>
-                        <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
-                                class="icon-instagram"></span></a>
                     </div>
                 </div>
             </div>
@@ -285,12 +279,12 @@
             {{#each Baiviet}}
             <div class="col-lg-6">
                 <div>
-                    <a href="/Tips/{{idTips}}" class="mb-4 d-block"><img src="{{AnhDaiDien}}" alt="Image"
+                    <a href="/{{LoaiBai}}/{{idTips}}" class="mb-4 d-block"><img src="{{AnhDaiDien}}" alt="Image"
                             class="img-fluid rounded"></a>
-                    <h2><a href="/Tips/{{idTips}}">{{TieuDe}}</a></h2>
+                    <h2><a href="/{{LoaiBai}}/{{idTips}}">{{TieuDe}}</a></h2>
                     <p class="text-muted mb-3 text-uppercase small"><span class="mr-2">{{format NgayDang}}</span></p>
                     <p>{{NoiDungTomTat}}</p>
-                    <p><a href="/Tips/{{idTips}}">Read More</a></p>
+                    <p><a href="/{{LoaiBai}}/{{idTips}}">Read More</a></p>
                 </div>
             </div>
             {{/each}}
