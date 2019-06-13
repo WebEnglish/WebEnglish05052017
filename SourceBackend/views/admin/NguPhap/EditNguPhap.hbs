@@ -9,16 +9,14 @@
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-
-
-
 <script
     src="https://cdn.tiny.cloud/1/c3n6lu13jap2ehdz800xbmrmucezhjkqbjyfs2ps60jbgn4z/tinymce/5/tinymce.min.js"></script>
+
 <script>
     $(function () {
         tinymce.init({
             selector: '#txtEditor',
-            height: 600,
+            height: 400,
             menubar: false,
             plugins: 'paste image link autolink lists checklist table media',
             toolbar: [
@@ -70,6 +68,54 @@
 
 <script>
     $(function () {
+        $('#formAdd').validate({
+            rules: {
+                ChuDe: {
+                    required: true,
+                    remote: {
+                        url: '/admin/nguphap/is-validate'
+                    }
+                },
+                LoaiBai: {
+                    required: true,
+                },
+                NgayDang: {
+                    required: true  
+                },
+                NoiDung: {
+                    required: true
+                }
+
+            },
+            messages: {
+                ChuDe: {
+                    required: 'Nhập chính xác chủ đề',
+                    remote: 'Chủ đề cấu trúc đã tồn tại'
+                },
+                LoaiBai: {
+                    required: 'Nhập chính xác cấp độ'
+                },
+                NgayDang: {
+                    required: 'Nhập chính xác ngày đăng'
+                },
+                NoiDung: {
+                    required: 'Nhập chính xác nội dung'
+                }
+            },
+            errorElement: 'small',
+            errorClass: 'col help-block text-danger',
+            highlight: function (e) {
+                $(e).removeClass('is-valid').addClass('is-invalid');
+            },
+            unhighlight: function (e) {
+                $(e).removeClass('is-invalid').addClass('is-valid');
+            }
+        })
+    })
+</script>
+
+<script>
+    $(function () {
         $('#date').datetimepicker({
             format: 'd/m/Y',
             timepicker: false,
@@ -79,6 +125,8 @@
 </script>
 
 {{/section}}
+
+{{#if Check}}
 <form id="formEdit" action="/admin/nguphap/chinhsua" method="POST">
     <div>
         <div class=" m-5 shadow p-3 bg-gray rounded text-black">
@@ -98,7 +146,7 @@
                         value="{{TenBai}}">
                 </div>
                 <div class="col-md-5 mt-3">
-                    <input name="NgayDang" type="text" id="date" value="{{format this.chitiet.NgayDang}}"
+                    <input name="NgayDang" type="text" id="date" value="{{format NgayDang}}"
                         class="form-control border">
                 </div>
                 <div class="col-md-11 mt-3">
@@ -120,3 +168,48 @@
 
     </div>
 </form>
+{{else}}
+<form id="formAdd" action="/admin/nguphap/add" method="POST">
+    <div>
+        <div class=" m-5 shadow p-3 bg-gray rounded text-black">
+            <div>
+                <h5 class="modal-title text-black col-md-11" id="logoutModalLabel"><b>THÊM NGỮ PHÁP</b></h5>
+            </div>
+            <hr>
+            <div class="form-group row ml-5">
+                <div class="col-md-5 mt-3">
+                    <select name="LoaiBai" style="width: 400px;height: 40px">
+                        <option value="">Chọn cấp độ</option>
+                        <option value="3">Cấu trúc căn bản</option>
+                        <option value="4">Cấu trúc nâng cao</option> 
+                    </select>
+                </div>
+                <div class="col-md-5 mt-3">
+                    <input name="NgayDang" type="text" id="date" placeholder="Ngày đăng" value="{{format this.Nowday}}"
+                        class="form-control border">
+                </div >
+                <div class="col-md-11 mt-3">
+                    <input name="ChuDe" type="text" id="ten" class="form-control border" placeholder="Chủ đề"
+                        value="">
+                </div>
+                <div class="col-md-11 mt-3">
+                    <textarea class="form-control border" name="NoiDung" id="txtEditor"
+                        rows="10"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12 ml-5" style="margin-top:20px">
+                <a class="btn btna" href="/admin/nguphap"
+                    style="margin-left:none !important;height:35px;background-color:#2A3F54; color:floralwhite; width:100px"
+                    type="button" id="Quaylai"><i class="fa fa-backward" aria-hidden="true">&nbsp;</i>Quay lại</a>
+                <button class="btn btna btn-primary"
+                    style="height:35px;background-color:#2A3F54; color:floralwhite; width:150px" type="submit"
+                    id="Them">
+                    <i class="fa fa-check" aria-hidden="true">&nbsp;</i>Thêm cấu trúc</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+
+{{/if}}

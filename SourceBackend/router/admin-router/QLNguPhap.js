@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var NPModel = require('../../model/NguPhap.model')
+var moment = require('moment');
 
-router.get('/',(req,res)=>{
+router.get('/', (req, res) => {
     NPModel.all().then(rows => {
         var dem = 0;
         var i = 0;
@@ -11,18 +12,21 @@ router.get('/',(req,res)=>{
             rows[i].stt = dem;
             i += 1;
         }
-        res.render('admin/NguPhap/QLNguPhap',{
+        res.render('admin/NguPhap/QLNguPhap', {
             dsCauTruc: rows,
             layout: './indexAdmin'
         })
     })
-    
+
 })
 
-router.get('/chitiet/:id',(req,res)=>{
+router.get('/chitiet/:id', (req, res) => {
     var id = req.params.id;
-    NPModel.getNPbyID(id).then(row =>{
-        res.render('admin/NguPhap/EditNguPhap',{
+    var check = true;
+    NPModel.getNPbyID(id).then(row => {
+
+        res.render('admin/NguPhap/EditNguPhap', {
+            Check: check,
             chitiet: row,
             layout: './indexAdmin'
         })
@@ -30,33 +34,101 @@ router.get('/chitiet/:id',(req,res)=>{
 })
 
 
-router.post('/chinhsua',(req,res)=>{
+router.post('/chinhsua', (req, res) => {
     var temp = req.body;
-    NPModel.getNPbyID(temp.ma).then(row =>{
+    var dob = moment(temp.NgayDang, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    NPModel.getNPbyID(temp.Ma).then(row => {
         var entity = {
-            idCauTruc: temp.ma,
+            idCauTruc: temp.Ma,
             CDBaiHoc: row[0].CDBaiHoc,
             NoiDung: temp.NoiDung,
-            NgayDang : temp.NgayDang,
-            Xoa: 0            
+            NgayDang: dob,
+            Xoa: 0
         }
         var entity1 = {
             idCDBaiHoc: row[0].idCDBaiHoc,
             TenBai: temp.ChuDe,
-            LoaiBai: row[0].LoaiBai
+            LoaiBai: row[0].LoaiBai,
+            Xoa: 0,
         }
-        NPModel.updateCT(entity).then(id1 =>{
-           
+        NPModel.updateCT(entity).then(id1 => {
         });
-        NPModel.updateCD(entity1).then(id2 =>{
-                
+        NPModel.updateCD(entity1).then(id2 => {
         });
-
         res.redirect('/admin/nguphap');
-        
+
     })
-    
+
 })
- 
+
+router.get('/add', (req, res) => {
+    var check = false;
+    var date = new Date();
+    var nowday = moment(date, 'DD/MM/YYY').format('YYYY/MM/DD')
+    res.render('admin/NguPhap/EditNguPhap', {
+        Check: check,
+        Nowday: nowday,
+        layout: './indexAdmin'
+    })
+})
+
+router.post('/add', (req, res) => {
+    var temp = req.body;
+    entitya = {
+        TenBai: temp.ChuDe,
+        LoaiBai: temp.LoaiBai,
+        Xoa: 0,
+    }
+    NPModel.addChuDe(entitya);
+    res.redirect('/admin/nguphap/add/' + temp.ChuDe);
+    // NPModel.GetCDByten(temp.ChuDe).then(row => {
+    //     var dob = moment(temp.NgayDang, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    //     entityb = {
+    //         CDBaiHoc: row[0].idCDBaiHoc,
+    //         NoiDung: temp.NoiDung,
+    //         NgayDang: dob,
+    //         Xoa: 0,
+    //     };
+        
+    //     NPModel.addCauTruc(entityb);
+        
+    // })
+
+})
+
+router.get('/add/:id', (req, res) => {
+    var a = req.params.id
+    res.end(a);
+})
+
+
+
+router.get('/is-validate', (req, res, next) => {
+    var ten = req.query.ChuDe;
+    NPModel.GetCDByten(ten).then(rows => {
+        if (rows.length > 0) {
+            return res.json(false);
+        }
+        return res.json(true);
+    })
+})
+
+router.get('/delete/:id', (req, res) => {
+    var id = req.params.id;
+    NPModel.getNPbyID(id).then(row => {
+        var entityNP = {
+            idCauTruc: id,
+            Xoa: 1,
+        }
+        var entityCD = {
+            idCDBaiHoc: row[0].CDBaiHoc,
+            Xoa: 1,
+        }
+        NPModel.updateCT(entityNP);
+        NPModel.updateCD(entityCD);
+        res.redirect('/admin/nguphap');
+    })
+})
+
 
 module.exports = router;
