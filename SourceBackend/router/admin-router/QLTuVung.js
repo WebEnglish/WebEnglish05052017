@@ -57,8 +57,18 @@ router.post('/', (req, res, next) => {
     }
 })
 
+router.post('/addCate', (req, res, next) => {
+    var ten = req.body.Cate;
+    var entity = {
+        TenBai : ten,
+        LoaiBai : 1,
+        Xoa : 0
+    }
+    TVModel.add(entity).then(id =>{
+        res.redirect('/admin/tuvung')
+    })
 
-
+})
 
 router.get('/is-exsist',(req,res,next) =>{
     var Cate = req.query.Cate;
@@ -85,21 +95,48 @@ router.get('/delete/:id',(req,res,next) =>{
 
 })
 
-router.post('/them',(req,res)=>{
-    var temp = req.body;
-    entity = {
-        CDBaiHoc : temp.chude,
-        TenTuVung : temp.tentv,
-        PhienAm : temp.CachPhatAm,
-        FileAmThanh: temp.fileAmThanh,
-        FileHinhAnh: temp.fileHinh,
-        YNghia: temp.YNghia,
-        ViDu: temp.Vidu,
-        LoaiTu : tamp.LoaiTu,
+router.get('/chinhsua/:ida',(req,res,next) =>{
+    var id = req.params.ida;
+    Promise.all([
+        TVModel.getTVbyID(id),
+        TVModel.listBaiHoc()
+    ]).then(([rows1,rows2]) => {
+        for (const c of rows2) {
+            if (c.idCDBaiHoc === +rows1[0].CDBaiHoc){
+                c.isSelected = true;
+            }
+        }
 
-
-
-    }
+        res.render('admin/TuVung/EditTuVung',{
+            tuvung: rows1[0],
+            chude: rows2,
+            layout: './indexAdmin'
+        })
+    })
+    
 })
+
+router.post('/chinhsua',(req,res) => {
+    var temp = req.body;
+    TVModel.getIDByTenTV(temp.tentv).then(row => {
+        var entity = {
+            idTuVung: row[0].idTuVung,
+            CDBaiHoc: temp.chude,
+            TenTuVung: temp.tentv,
+            PhienAm: temp.CachPhatAm,
+            FileAmThanh: temp.fileAmThanh,
+            FileHinhAnh: temp.fileHinh,
+            YNghia: temp.YNghia,
+            ViDu: temp.Vidu,
+            LoaiTu: temp.LoaiTu,
+            Xoa: 0          
+            
+        }       
+        TVModel.update(entity).then(id => {
+            res.redirect('/admin/tuvung')
+        })
+    })
+})
+
 
 module.exports = router;

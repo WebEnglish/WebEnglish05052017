@@ -1,15 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var bcrypt = require('bcrypt');
-var moment = require('moment');
 var passport = require('passport');
 var userModel = require('../../model/thanhvien.model')
 
-router.get('/', (req, res) => {
+router.get('/', (req, res,next) => {
     res.render('user/login', {
         layout: './index'
     });
-
 })
 
 router.post('/', (req, res, next) => {

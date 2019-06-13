@@ -34,21 +34,6 @@ router.get('/taikhoan', (req, res, next) => {
     }).catch(next);
 })
 
-router.post('/addCate', (req, res, next) => {
-    var ten = req.body.Cate;
-    var entity = {
-        TenBai : ten,
-        LoaiBai : 1,
-        Xoa : 0
-    }
-    TVModel.add(entity).then(id =>{
-        res.redirect('/admin/tuvung')
-    })
-
-})
-
-
-
 router.post('/taikhoan', (req, res, next) => {
     var id = req.body.phanhe;
     if (isNaN(id)) {
@@ -71,6 +56,8 @@ router.post('/taikhoan', (req, res, next) => {
                     c.isSelected = true;
                 }
             }
+
+            
             res.render('admin/TaiKhoan/QLTaiKhoan', {
                 listPH: cate1,
                 listTk: cate2,
@@ -80,8 +67,6 @@ router.post('/taikhoan', (req, res, next) => {
     }
 
 })
-
-
 
 router.post('/them', (req, res, next) => {
     var saltRounds = 10;
@@ -101,6 +86,29 @@ router.post('/them', (req, res, next) => {
         res.redirect('/admin/taikhoan');
     })
 })
+
+
+
+router.post('/themtv',(req,res)=>{
+    var temp = req.body;
+    var a = temp.chude;
+    entity = {
+        CDBaiHoc : temp.chude,
+        TenTuVung : temp.tentv,
+        PhienAm : temp.CachPhatAm,
+        FileAmThanh: temp.fileAmThanh,
+        FileHinhAnh: temp.fileHinh,
+        YNghia: temp.YNghia,
+        ViDu: temp.Vidu,
+        LoaiTu : temp.LoaiTu,
+        Xoa:  0,
+    }
+
+    TVModel.addds(entity).then(id => {
+        res.redirect('/admin/tuvung')
+    })
+})
+
 
 router.get('/profile', (req, res) => {
     var a = req.user.ngaysinh;

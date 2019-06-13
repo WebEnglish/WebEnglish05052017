@@ -6,7 +6,45 @@ var passport = require('passport');
 var userModel = require('../../model/thanhvien.model');
 var abcModel = require('../../model/DSmuchoc.model');
 
+
+// router.get('/is-available', (req, res, next) => {
+//     var email = req.query.email;
+//     userModel.getPassbyEmail(email).then(rows => {
+//         if (rows.length > 0) {
+//             return res.json(false);
+//         }
+//         return res.json(true);
+//     })
+// })
+
+router.post('/register', (req, res, next) => {
+    var saltRounds = 10;
+    var nowDate = new Date();
+    var hash = bcrypt.hashSync(req.body.pass, saltRounds);
+    var dob = moment(req.body.bdate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    var nowday = moment(nowDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    var entity = {
+        hoten: req.body.HoTen,
+        ngaysinh: dob,
+        NgayTaoTK: nowday,
+        matkhau: hash,
+        email: req.body.email,
+        phanhe: 2,
+        Xoa: 0,
+    }
+    userModel.add(entity).then(id => {
+        res.redirect('/');
+    })
+
+})
+
+router.post('/', (req, res, next) => {
+    req.logOut();
+    res.redirect('/login')
+})
+
 router.get('/', (req, res) => {
+
 
     abcModel.baiviet()
         .then(row => {
@@ -89,13 +127,13 @@ router.get('/:idCM', (req, res, next) => {
                 layout: './index'
             })
         }
-        if(id==7){
-            res.render("user/testtrinhdo",{
+        if (id == 7) {
+            res.render("user/testtrinhdo", {
                 layout: './index'
             })
         }
         if (id == 8 || id == 9) {
-            res.render("user/testlist",{
+            res.render("user/testlist", {
                 DSbaitest: row4,
                 Loaibai: row5,
                 layout: './index'
@@ -180,7 +218,7 @@ router.get('/:idCM/:idCD', (req, res, next) => {
                 layout: './index'
             });
         }
-        if ( id == 8 || id == 9) {
+        if (id == 8 || id == 9) {
             res.render("user/test-detail", {
                 Chitietbaikt: row8,
                 layout: './index'
@@ -210,57 +248,19 @@ router.post('/login', (req, res, next) => {
         req.logIn(email, err => {
             if (err)
                 return next(err);
-            return res.redirect('/listening');
+            return res.redirect('/trangchu');
         });
     })(req, res, next);
 })
 
-router.get('/is-available', (req, res, next) => {
-
-    router.post('/', (req, res, next) => {
-        req.logOut();
-        res.redirect('/login')
-    })
 
 
 
-    router.get('/is-available', (req, res, next) => {
-        var email = req.query.email;
-        userModel.getPassbyEmail(email).then(rows => {
-            if (rows.length > 0) {
-                return res.json(false);
-            }
-            return res.json(true);
-        })
-    })
 
-    router.post('/', (req, res, next) => {
-        var saltRounds = 10;
-        var b = req.body;
-        var hash = bcrypt.hashSync(req.body.pass, saltRounds);
-        var dob = req.body.bdate;
-        router.post('/register', (req, res, next) => {
-            var saltRounds = 10;
-            var nowDate = new Date();
-            var hash = bcrypt.hashSync(req.body.pass, saltRounds);
-            var dob = moment(req.body.bdate, 'DD/MM/YYYY').format('YYYY-MM-DD');
-            var nowday = moment(nowDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
-            var entity = {
-                hoten: req.body.HoTen,
-                ngaysinh: dob,
-                NgayTaoTK: nowday,
-                matkhau: hash,
-                email: req.body.email,
-                phanhe: 2,
-                Xoa: 0,
-            }
-            userModel.add(entity).then(id => {
-                res.redirect('/');
-            })
 
-        })
-    })
-})
+
+
+
 
 
 module.exports = router;

@@ -23,5 +23,14 @@ module.exports = {
   update: entity => {
     return db.update('dstuvung', 'idTuVung', entity);
   },
+  addds: entity => {
+    return db.add('dstuvung', entity);
+  },
+  getTVbyID : id => {
+    return db.load(`select * from dstuvung where Xoa = 0 and idTuVung = '${id}' and Xoa = 0`)
+  },
+  getIDByTenTV: ten => {
+    return db.load(`select * from dstuvung where TenTuVung = '${ten}' and Xoa = 0`)
+  }
 
 };
