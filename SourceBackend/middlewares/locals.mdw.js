@@ -1,11 +1,12 @@
 var categoryModel = require('../model/DSmuchoc.model');
+var userModel = require('../model/thanhvien.model');
 
 module.exports = (req, res, next) => {
     Promise.all([
         categoryModel.menu(),
         categoryModel.dropdown()
     ])
-        .then(([rows, rows2]) => { 
+        .then(([rows, rows2, row3]) => { 
             var tmp=[];    
             for (const d of rows2) {
                 res.locals.MucHoc = rows;
@@ -19,8 +20,6 @@ module.exports = (req, res, next) => {
                 }
             }
            
-            
-            
             next();
         })
 }

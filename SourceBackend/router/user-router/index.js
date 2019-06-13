@@ -17,6 +17,14 @@ var abcModel = require('../../model/DSmuchoc.model');
 //     })
 // })
 
+router.get('/changePass', (req,res) => {
+    res.render("user/changePass", {
+        layout: './index'
+    })
+})
+
+
+
 router.post('/register', (req, res, next) => {
     var saltRounds = 10;
     var nowDate = new Date();
@@ -252,7 +260,6 @@ router.post('/login', (req, res, next) => {
         });
     })(req, res, next);
 })
-
 
 
 
