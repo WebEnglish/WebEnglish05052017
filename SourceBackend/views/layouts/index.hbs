@@ -36,6 +36,8 @@
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 
+  {{{_sections.css}}}
+
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -323,15 +325,16 @@
       })
     })
   </script>
-<script>
-  $(function () {
-    $('date').datetimepicker({
-      format: 'd/m/Y',
-      timepicker: false,
-      mask: true
-    });
-  })
-</script>
+  <script>
+    $(function () {
+      $('date').datetimepicker({
+        format: 'd/m/Y',
+        timepicker: false,
+        mask: true
+      });
+    })
+  </script>
+  {{{_sections.js}}}
 </body>
 
 </html>
