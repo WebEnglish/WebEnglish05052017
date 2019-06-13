@@ -29,22 +29,13 @@
 <div class="mt-3">
     <div class="title ml-5 text-black">
         <h2><b>Quản lý Phần ngữ pháp</b></h2>
+        <hr>
     </div>
-    <div class="col-md-12 ml-5 mt-3 d-flex flex-nowrap">
-        <div class="col-md-9 d-flex flex-nowrap">
-            Lọc theo loại: &nbsp;
-            <select class="form-control border col-md-3">
-                <option>Cơ bản</option>
-                <option>Nâng cao</option>
-
-            </select> &nbsp;
-            <a href="#" data-toggle="modal" data-target="#ThemCat-Modal"><i class="fas fa-plus-circle"></i>
-                Thêm
-                loại</a>
-        </div>
+    <div class="col-md-12 ml-0 mt-3 d-flex flex-nowrap">
+        
         <div class="col-md-4 d-flex justify-content-start">
-            <button id="btnThem" class="btn" data-toggle="modal" data-target="#Them-Modal">
-                <i class="fas fa-plus-circle"></i> Thêm bài học</button>
+            <button id="btnThem" class="btn"><a href="/admin/nguphap/add">
+                <i class="fas fa-plus-circle"></i> Thêm bài học</a></button>
         </div>
     </div>
     <div class="col-md-12 mt-3">
@@ -64,9 +55,8 @@
                     <td>{{ChuDe}}</td>
                     <td>{{format NgayDang}}</td>
                     <td>
-                        <a href="" data-toggle="modal" data-target="#chitiet-Modal"><i
+                        <a href="/admin/nguphap/delete/{{idCauTruc}}"><i
                                 class="fas fa-minus-circle"></i></a>
-                        <a href=""><i class="fas fa-wrench"></i></a>
                         <a href="/admin/nguphap/chitiet/{{idCauTruc}}" id="chitiet"><i class="far fa-eye"></i></a>
                     </td>
                 </tr>
