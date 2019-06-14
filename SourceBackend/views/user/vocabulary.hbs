@@ -1,13 +1,12 @@
 {{#section 'js'}}
 <script>
-    $(document).ready(function () {
-        $("#btnPlay").click(function () {
-            $("#myAudio").play();
-        });
-    });
+    function choiaudio() {
+        //var a = document.getElementById("myAudio");
+        //a.play();
+        alert("Ok");
+    }
 </script>
 {{/section}}
-
 <section class="site-section">
     <div class="w3-sidebar" style="top: 0px;">
         <div class="w3-bar-block" id="leftmenuinner">
@@ -33,22 +32,19 @@
                             <img style="width: 150px; height: 100px; border: 1px solid #eee;" src="{{FileHinhAnh}}">
                         </span>
                         <div class="pl-5">
-                            <p>
-                                <b style="color: #337ab7;">{{TenTuVung}}</b>
-                                ({{LoaiTu}})
-                                :
-                                <i>{{{YNghia}}}</i>
-                                <br>
-                                <audio id="myAudio">
-                                    <source src="{{FileAmThanh}}" type="audio/mpeg">
-                                </audio>
-                                <button type="button" id="btnPlay" onclick="playAudio()" >
-                                   <i class="fas fa-volume-up"></i>
-                                </button>
-                                <i> {{PhienAm}} </i>
-                                <br>
-                                <b>Ex:</b> {{{ViDu}}}
-                            </p>
+                            <b style="color: #337ab7;">{{TenTuVung}}</b>
+                            ({{LoaiTu}})
+                            :
+                            <i>{{{YNghia}}}</i>
+                            <br>
+                            <audio id="myAudio">
+                                <source src="{{FileAmThanh}}" type="audio/mpeg">
+                            </audio>
+                            {{!-- <button class="btn" onclick="choiaudio()">
+                            </button> --}}
+                            <i> {{PhienAm}} </i>
+                            <br>
+                            <b>Ex:</b> {{{ViDu}}}
                         </div>
                     </div>
                     <hr>
@@ -57,8 +53,6 @@
             </div>
         </div>
     </div>
-
-
     {{!-- <div class="container mx-auto blog-content">
         <div class="comment-form-wrap shadow mt-5 col-12 pt-3">
             <h3 class="">Bình luận</h3>
