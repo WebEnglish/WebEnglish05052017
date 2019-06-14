@@ -9,6 +9,7 @@ var TVModel = require('../../model/TuVung.model');
 
 
 router.get('/', (req, res, next) => {
+    
     res.render('admin/index-Admin', {
         layout: './indexAdmin'
     })
@@ -87,8 +88,6 @@ router.post('/them', (req, res, next) => {
     })
 })
 
-
-
 router.post('/themtv',(req,res)=>{
     var temp = req.body;
     var a = temp.chude;
@@ -116,6 +115,22 @@ router.get('/profile', (req, res) => {
         ns: a,
         layout: './indexAdmin'
     })
+})
+
+router.post('/profile', (req, res) => {
+    var pro = req.body;
+    var dob = moment(pro.Date,"DD/MM/YYYY").format("YYYY/MM/DD");
+    userModel.getIDByEmail(pro.email).then(row => {
+        var entity = {
+            idTaiKhoan: row[0].idTaiKhoan,
+            hoten: pro.HoTen,
+            ngaysinh: dob
+        }
+        userModel.update(entity);
+    })
+    req.user.hoten = pro.HoTen;
+    req.user.ngaysinh = pro.Date;
+    res.redirect('/admin');
 })
 
 module.exports = router;

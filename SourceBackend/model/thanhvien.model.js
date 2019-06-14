@@ -8,6 +8,9 @@ module.exports = {
   getPassbyEmail: email =>{
     return db.load(`select * from taikhoan where email = '${email}' and Xoa = 0`);
   },
+  checkPass: pass => {
+    return db.load(`select * from taikhoan where matKhau = '${pass}' and Xoa = 0`);
+  },
 
   all: () => {
     return db.load('select * from taikhoan where Xoa = 0');

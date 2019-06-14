@@ -64,7 +64,7 @@ router.post('/chinhsua', (req, res) => {
 router.get('/add', (req, res) => {
     var check = false;
     var date = new Date();
-    var nowday = moment(date, 'DD/MM/YYY').format('YYYY/MM/DD')
+    var nowday = moment(date, 'DD/MM/YYYY').format('YYYY/MM/DD')
     res.render('admin/NguPhap/EditNguPhap', {
         Check: check,
         Nowday: nowday,
@@ -80,19 +80,20 @@ router.post('/add', (req, res) => {
         Xoa: 0,
     }
     NPModel.addChuDe(entitya);
+    
+    NPModel.GetCDByten(temp.ChuDe).then(row => {
+        var dob = moment(temp.NgayDang, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        entityb = {
+            CDBaiHoc: row[0].idCDBaiHoc,
+            NoiDung: temp.NoiDung,
+            NgayDang: dob,
+            Xoa: 0,
+        };
+        
+        NPModel.addCauTruc(entityb);
+        
+    })
     res.redirect('/admin/nguphap/add/' + temp.ChuDe);
-    // NPModel.GetCDByten(temp.ChuDe).then(row => {
-    //     var dob = moment(temp.NgayDang, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    //     entityb = {
-    //         CDBaiHoc: row[0].idCDBaiHoc,
-    //         NoiDung: temp.NoiDung,
-    //         NgayDang: dob,
-    //         Xoa: 0,
-    //     };
-        
-    //     NPModel.addCauTruc(entityb);
-        
-    // })
 
 })
 
