@@ -7,23 +7,57 @@ var userModel = require('../../model/thanhvien.model');
 var abcModel = require('../../model/DSmuchoc.model');
 
 
-// router.get('/is-available', (req, res, next) => {
-//     var email = req.query.email;
-//     userModel.getPassbyEmail(email).then(rows => {
-//         if (rows.length > 0) {
-//             return res.json(false);
-//         }
-//         return res.json(true);
-//     })
-// })
 
-router.get('/changePass', (req,res) => {
-    res.render("user/changePass", {
-        layout: './index'
+
+
+router.post('/changePass', (req, res) => {
+    var infor = req.body;
+     var id = req.user.idTaiKhoan
+    var newPass = bcrypt.hashSync(infor.newPass,10);
+    var entity = {
+        idTaiKhoan : id,
+        matKhau : newPass
+    }
+    userModel.update(entity);
+    if(req.user.phanhe === +2)
+    {
+        res.redirect('/trangchu');
+    }
+    else res.redirect('/admin')
+    
+    
+})
+
+router.get('/checkPass', (req, res) => {
+    var pass = req.query.oldPass;
+    var email = req.user.email;
+    userModel.getPassbyEmail(email).then(rows => {
+        var ret = bcrypt.compareSync(pass, rows[0].matKhau);
+        if (ret) {
+            return res.json(true);
+        }
+        return res.json(false);
     })
 })
 
 
+
+router.post('/infor', (req, res) => {
+    var infor = req.body;
+    var dob = moment(infor.NgaySinh, "DD/MM/YYYY").format("YYYY/MM/DD");
+    userModel.getIDByEmail(infor.Email).then(row => {
+        var a = 2;
+        entity = {
+            idTaiKhoan: row[0].idTaiKhoan,
+            hoten: infor.HoTen,
+            ngaysinh: dob,
+        }
+        req.user.hoten = infor.HoTen;
+        req.user.ngaysinh = infor.NgaySinh;
+        userModel.update(entity);
+        res.redirect('/trangchu');
+    })
+})
 
 router.post('/register', (req, res, next) => {
     var saltRounds = 10;
@@ -46,7 +80,22 @@ router.post('/register', (req, res, next) => {
 
 })
 
-router.post('/', (req, res, next) => {
+router.get('/isAvailable', (req, res, next) => {
+    var email = req.query.email;
+    userModel.getPassbyEmail(email).then(rows => {
+        if (rows.length > 0) {
+            return res.json(false);
+        }
+        return res.json(true);
+    })
+})
+
+router.get('/logout', (req, res, next) => {
+    req.logOut();
+    res.redirect('/login')
+})
+
+router.post('/logout', (req, res, next) => {
     req.logOut();
     res.redirect('/login')
 })

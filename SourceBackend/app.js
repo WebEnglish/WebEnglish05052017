@@ -6,8 +6,6 @@ var hbs_sections = require('express-handlebars-sections')
 
 var app = express();
 var morgan = require('morgan');
-var hbs_sections = require('express-handlebars-sections')
-
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
