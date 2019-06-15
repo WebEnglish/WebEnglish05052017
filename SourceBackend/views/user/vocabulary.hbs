@@ -1,12 +1,12 @@
 {{#section 'js'}}
 <script>
-    function choiaudio() {
-        //var a = document.getElementById("myAudio");
-        //a.play();
-        alert("Ok");
+    function playAudio() {
+        var a = document.getElementById("myAudio");
+        a.play();
     }
 </script>
 {{/section}}
+
 <section class="site-section">
     <div class="w3-sidebar" style="top: 0px;">
         <div class="w3-bar-block" id="leftmenuinner">
@@ -40,8 +40,9 @@
                             <audio id="myAudio">
                                 <source src="{{FileAmThanh}}" type="audio/mpeg">
                             </audio>
-                            {{!-- <button class="btn" onclick="choiaudio()">
-                            </button> --}}
+
+                            <i class="fas fa-volume-up" onclick="playAudio()"></i>
+
                             <i> {{PhienAm}} </i>
                             <br>
                             <b>Ex:</b> {{{ViDu}}}
@@ -53,6 +54,8 @@
             </div>
         </div>
     </div>
+
+
     {{!-- <div class="container mx-auto blog-content">
         <div class="comment-form-wrap shadow mt-5 col-12 pt-3">
             <h3 class="">Bình luận</h3>

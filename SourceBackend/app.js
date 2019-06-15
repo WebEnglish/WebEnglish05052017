@@ -33,6 +33,8 @@ app.use(require('./middlewares/auth-mdw'));
 app.use(express.static(__dirname+'/public'));
 
 app.use('/admin', require('./router/admin-router/indexAdmin'))
+app.use('/admin', require('./router/admin-router/QLBaiViet'))
+app.use('/admin/baiviet', require('./router/admin-router/QLBaiViet'))
 app.use('/admin/taikhoan', require('./router/admin-router/QLTaiKhoan'))
 app.use('/admin/tuvung', require('./router/admin-router/QLTuVung'))
 app.use('/admin/nguphap', require('./router/admin-router/QLNguPhap'))

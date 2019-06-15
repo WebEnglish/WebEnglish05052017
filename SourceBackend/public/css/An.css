@@ -242,3 +242,11 @@ tbody{
 .body-modal{
     padding-left: 100px;
 }
+
+.fa-volume-up{
+    cursor: pointer;
+}
+
+.fa-volume-up:hover{
+    color: #DD6B4D;
+}
