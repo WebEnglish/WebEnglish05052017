@@ -25,6 +25,7 @@ router.post('/', (req, res, next) => {
                 return next(err);
             }
             else {
+                
                 userModel.getPassbyEmail(user.email).then(tk => {
                     if (tk[0].phanhe === 2) {
                          return res.redirect('/');

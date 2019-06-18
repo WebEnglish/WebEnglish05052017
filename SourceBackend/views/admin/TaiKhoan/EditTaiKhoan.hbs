@@ -31,30 +31,30 @@
 <form action="/admin/taikhoan/edit" method="POST">
     <div>
         <div class=" m-5 shadow p-3 bg-gray rounded text-black">
-            <h1>Chỉnh sửa tài khoản</h1>
-            <div class="col-md-12 mt-4">
+            <h1><b>Chỉnh sửa tài khoản</b></h1>
+            <hr>
+            <div class="col-md-12 mt-4 d-flex justify-content-center">
                 <label class="col-md-2 ">Họ Tên:</label>
-                <input class="col-md-5" placeholder="Nhập họ tên" name="ten" type="text" value="{{this.member.hoten}}">
+                <input class="col-md-5 form-control border form-control border" placeholder="Nhập họ tên" name="ten" type="text" value="{{this.member.hoten}}">
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-3 d-flex justify-content-center">
                 <label class="col-md-2">Email:</label>
-                <input class="col-md-5" type="text"  name="email" value="{{this.member.email}}">
+                <input class="col-md-5 form-control border" type="text"  name="email" value="{{this.member.email}}">
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-3 d-flex justify-content-center">
                 <label class="col-md-2">Ngày sinh:</label>
-                <input class="col-md-5" type="text" id="date" name="date" value=" {{this.member.ngaysinh}}">
+                <input class="col-md-5 form-control border" type="text" id="date" name="date" value=" {{this.member.ngaysinh}}">
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-3 d-flex justify-content-center">
                 <label class="col-md-2">Ngày đăng kí:</label>
-                <input class="col-md-5" type="text" id="datex" name="da" value=" {{this.member.NgayTaoTK}}">
+                <input class="col-md-5 form-control border" type="text" id="datex" name="da" value=" {{this.member.NgayTaoTK}}">
             </div>
 
-            <div class="col-md-12 ml-5" style="margin-top:20px">
+            <div  class="col-md-11 ml-5" style="margin-top:20px; display:flex; justify-content:space-between">
                 <a class="btn btna" href="/admin/taikhoan"
-                    style="margin-left:none !important;height:35px;background-color:#2A3F54; color:floralwhite; width:100px"
-                    type="button" id="Quaylai"><i class="fa fa-backward" aria-hidden="true">&nbsp;</i>Quay lại</a>
+                     id="Quaylai"><i class="fa fa-backward" aria-hidden="true">&nbsp;</i>Quay lại</a>
                 <button class="btn btna btn-primary"
-                    style="height:35px;background-color:#2A3F54; color:floralwhite; width:100px" type="submit"
+                 type="submit"
                     id="Them">
                     <i class="fa fa-check" aria-hidden="true">&nbsp;</i>Lưu lại</button>
             </div>

@@ -80,7 +80,7 @@ router.post('/add', (req, res) => {
         Xoa: 0,
     }
     NPModel.addChuDe(entitya);
-    
+
     NPModel.GetCDByten(temp.ChuDe).then(row => {
         var dob = moment(temp.NgayDang, 'DD/MM/YYYY').format('YYYY-MM-DD');
         entityb = {
@@ -89,9 +89,9 @@ router.post('/add', (req, res) => {
             NgayDang: dob,
             Xoa: 0,
         };
-        
+
         NPModel.addCauTruc(entityb);
-        
+
     })
     res.redirect('/admin/nguphap/add/' + temp.ChuDe);
 
@@ -114,7 +114,7 @@ router.get('/is-validate', (req, res, next) => {
     })
 })
 
-router.get('/delete/:id', (req, res) => {
+router.post('/delete/:id', (req, res) => {
     var id = req.params.id;
     NPModel.getNPbyID(id).then(row => {
         var entityNP = {
@@ -125,9 +125,13 @@ router.get('/delete/:id', (req, res) => {
             idCDBaiHoc: row[0].CDBaiHoc,
             Xoa: 1,
         }
-        NPModel.updateCT(entityNP);
-        NPModel.updateCD(entityCD);
-        res.redirect('/admin/nguphap');
+        Promise.all([
+            NPModel.updateCT(entityNP),
+            NPModel.updateCD(entityCD),
+        ]).then(([id, id1]) => {
+            res.redirect('/admin/nguphap');
+        });
+
     })
 })
 

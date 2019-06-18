@@ -9,7 +9,7 @@ var userModel = require('../../model/thanhvien.model')
 //     res.redirect('/admin/taikhoan/delete');
 // })
 
-router.get('/delete/:id', (req, res, next) => {
+router.post('/delete/:id', (req, res, next) => {
     var id = req.params.id
     var entity = {
         idTaiKhoan: id,

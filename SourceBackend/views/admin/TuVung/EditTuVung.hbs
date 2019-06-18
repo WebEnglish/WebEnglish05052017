@@ -77,32 +77,35 @@
 </script>
 
 {{/section}}
-<form id="formAdd" action="/admin/tuvung/chinhsua" method="POST">
-    <div>
-        <div class=" m-5 shadow p-3 bg-gray rounded text-black">
-            <h1>Chỉnh sửa từ vựng</h1>
-            <div class="col-md-12 mt-4">
+
+<div>
+    <div class="m-3 bg-gray rounded text-black">
+        <h1><b>Chỉnh Sửa Từ Vựng</b></h1>
+    </div>
+    <div class="shadow-lg m-4 p-2">
+        <form id="formAdd" action="/admin/tuvung/chinhsua" method="POST">
+            <div class="col-md-12 mt-3 d-flex flex-nowrap justify-content-center">
                 <label class="col-md-2 ">Từ vựng:</label>
-                <input readonly class="col-md-5" placeholder="Nhập từ vựng" name="tentv" type="text"
+                <input readonly class="form-control border col-md-7" placeholder="Nhập từ vựng" name="tentv" type="text"
                     value="{{this.tuvung.TenTuVung}}">
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-3 d-flex flex-nowrap justify-content-center">
                 <label class="col-md-2">Chủ đề:</label>
-                <select style="height: 30px" class="col-md-5" name="chude" id="">
+                <select style="height: 40px" class=" form-control border col-md-7" name="chude" id="">
                     <option value="">Chủ đề</option>
                     {{#each this.chude}}
                     <option {{#if isSelected}} selected {{/if}} value="{{idCDBaiHoc}}">{{TenBai}}</option>
                     {{/each}}
                 </select>
             </div>
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12 mt-3 d-flex flex-nowrap justify-content-center">
                 <label class="col-md-2 ">Cách phát âm:</label>
-                <input class="col-md-5" placeholder="Nhập cách phát âm" name="CachPhatAm" type="text"
-                    value="{{this.tuvung.PhienAm}}">
+                <input class="col-md-7 form-control border" placeholder="Nhập cách phát âm" name="CachPhatAm"
+                    type="text" value="{{this.tuvung.PhienAm}}">
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-3 d-flex flex-nowrap justify-content-center">
                 <label class="col-md-2">Loại từ:</label>
-                <select style="height: 30px" class="col-md-5" name="LoaiTu" id="">
+                <select style="height: 40px" class="col-md-7 form-control border" name="LoaiTu" id="">
                     <option value="">Loại từ</option>
                     <option value="Verb">Verb</option>
                     <option value="Noun">Noun</option>
@@ -111,34 +114,34 @@
                     <option value="Preposition">Preposition </option>
                 </select>
             </div>
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12 mt-3 d-flex flex-nowrap justify-content-center">
                 <label class="col-md-2 ">Ý nghĩa:</label>
-                <input class="col-md-5" placeholder="Ý nghĩa" name="YNghia" type="text" value="{{this.tuvung.YNghia}}">
+                <textarea class="col-md-7 form-control border" placeholder="Ý nghĩa" name="YNghia" type="text"
+                    value="{{this.tuvung.YNghia}}">{{this.tuvung.YNghia}}</textarea>
             </div>
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12 mt-3 d-flex flex-nowrap justify-content-center">
                 <label class="col-md-2 ">Link âm thanh:</label>
-                <input class="col-md-5" placeholder="Link âm thanh" name="fileAmThanh" type="text"
+                <input class="col-md-7 form-control border" placeholder="Link âm thanh" name="fileAmThanh" type="text"
                     value="{{this.tuvung.FileAmThanh}}">
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-3 d-flex flex-nowrap justify-content-center">
                 <label class="col-md-2">Ví dụ:</label>
-                <textarea class="col-md-5" type="text" placeholder="Ví dụ" name="Vidu" value="{{this.tuvung.ViDu}}">{{this.tuvung.ViDu}}</textarea>
+                <textarea class="col-md-7 form-control border" type="text" placeholder="Ví dụ" name="Vidu"
+                    value="{{this.tuvung.ViDu}}">{{this.tuvung.ViDu}}</textarea>
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-3 d-flex flex-nowrap justify-content-center">
                 <label class="col-md-2">Link hình ảnh:</label>
-                <input class="col-md-5" type="text" placeholder="Link hình ảnh" name="fileHinh"
+                <input class="col-md-7 form-control border" type="text" placeholder="Link hình ảnh" name="fileHinh"
                     value="{{this.tuvung.FileHinhAnh}}">
             </div>
-            <div class="col-md-12 ml-5" style="margin-top:20px">
-                <a class="btn btna" href="/admin/tuvung"
-                    style="margin-left:none !important;height:35px;background-color:#2A3F54; color:floralwhite; width:100px"
-                    type="button" id="Quaylai"><i class="fa fa-backward" aria-hidden="true">&nbsp;</i>Quay lại</a>
-                <button class="btn btna btn-primary"
-                    style="height:35px;background-color:#2A3F54; color:floralwhite; width:100px" type="submit"
-                    id="Them">
-                    <i class="fa fa-check" aria-hidden="true">&nbsp;</i>Lưu lại</button>
+            <div class="col-md-11 ml-5" style="margin-top:20px; display:flex; justify-content:space-between">
+                <a class="btn" href="/admin/tuvung" id="Quaylai">
+                <i class="fa fa-backward">&nbsp;</i>Quay lại
+                </a>
+                <button class="btn " type="submit" id="Them">
+                    <i class="fa fa-check">&nbsp;</i>Lưu lại</button>
             </div>
-        </div>
-
+        </form>
     </div>
-</form>
+
+</div>

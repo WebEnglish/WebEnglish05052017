@@ -109,8 +109,16 @@
                     <i class="fas fa-id-card"></i>
                     Profile
                   </a>
-
+                 
+                  {{#if isAdmin}}
+                   <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/admin">
+                    <i class="fas fa-id-card"></i>
+                    Quản lí website
+                  </a>
+                  {{/if}}
                   <div class="dropdown-divider"></div>
+
                   <a class="dropdown-item" data-toggle="modal" data-target="#PassModal">
                     <i class="fas fa-exchange-alt"></i>
                     Đổi mật khẩu

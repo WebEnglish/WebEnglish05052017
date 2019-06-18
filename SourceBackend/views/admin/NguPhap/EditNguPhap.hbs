@@ -16,7 +16,7 @@
     $(function () {
         tinymce.init({
             selector: '#txtEditor',
-            height: 400,
+            height: 600,
             menubar: false,
             plugins: 'paste image link autolink lists checklist table media',
             toolbar: [
@@ -80,7 +80,7 @@
                     required: true,
                 },
                 NgayDang: {
-                    required: true  
+                    required: true
                 },
                 NoiDung: {
                     required: true
@@ -127,89 +127,86 @@
 {{/section}}
 
 {{#if Check}}
-<form id="formEdit" action="/admin/nguphap/chinhsua" method="POST">
-    <div>
-        <div class=" m-5 shadow p-3 bg-gray rounded text-black">
-            <div>
-                <h5 class="modal-title text-black col-md-11" id="logoutModalLabel"><b>CHI TIẾT NGỮ PHÁP</b></h5>
-            </div>
-            <hr>
-            {{#each chitiet}}
-            <div class="form-group row ml-5">
-                <div class="col-md-7">
-                    <label class="col-md-1">Mã: </label>
-                    <input class="col-md-5" readonly name="Ma" type="text" id="ten" class="form-control border"
-                        value="{{idCauTruc}}">
-                </div>
-                <div class="col-md-6 mt-3">
-                    <input name="ChuDe" type="text" id="ten" class="form-control border" placeholder="Chủ đề"
-                        value="{{TenBai}}">
-                </div>
-                <div class="col-md-5 mt-3">
-                    <input name="NgayDang" type="text" id="date" value="{{format NgayDang}}"
-                        class="form-control border">
-                </div>
-                <div class="col-md-11 mt-3">
-                    <textarea class="form-control border" name="NoiDung" id="txtEditor"
-                        rows="10">{{{NoiDung}}}</textarea>
-                </div>
-            </div>
-            {{/each}}
-            <div class="col-md-12 ml-5" style="margin-top:20px">
-                <a class="btn btna" href="/admin/nguphap"
-                    style="margin-left:none !important;height:35px;background-color:#2A3F54; color:floralwhite; width:100px"
-                    type="button" id="Quaylai"><i class="fa fa-backward" aria-hidden="true">&nbsp;</i>Quay lại</a>
-                <button class="btn btna btn-primary"
-                    style="height:35px;background-color:#2A3F54; color:floralwhite; width:100px" type="submit"
-                    id="Them">
-                    <i class="fa fa-check" aria-hidden="true">&nbsp;</i>Lưu lại</button>
-            </div>
+<div>
+    <div class="m-3 bg-gray rounded text-black">
+        <div>
+            <h1><b>Chi Tiết Ngữ Pháp</b></h1>
         </div>
-
+        <hr>
+        {{#each chitiet}}
+        <div class="shadow-lg m-4 p-3">
+            <form id="formEdit" action="/admin/nguphap/chinhsua" method="POST">
+                <div class="form-group row ml-5">
+                    <div class="col-md-7 d-flex flex-nowrap">
+                        <label class="col-md-1 mt-2">Mã: </label>
+                        <input class="col-md-3 form-control" readonly name="Ma" type="text" id="ten"
+                            value="{{idCauTruc}}">
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <input name="ChuDe" type="text" id="ten" class="form-control border" placeholder="Chủ đề"
+                            value="{{TenBai}}">
+                    </div>
+                    <div class="col-md-5 mt-3">
+                        <input name="NgayDang" type="text" id="date" value="{{format NgayDang}}"
+                            class="form-control border">
+                    </div>
+                    <div class="col-md-11 mt-3">
+                        <textarea class="form-control border" name="NoiDung" id="txtEditor"
+                            rows="10">{{{NoiDung}}}</textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {{/each}}
+        <div class="col-md-11 ml-5" style="margin-top:20px; display:flex;justify-content:space-between">
+            <a class="btn btna" href="/admin/nguphap" id="Quaylai"><i class="fa fa-backward"
+                    aria-hidden="true">&nbsp;</i>Quay lại</a>
+            <button class="btn btna btn-primary" type="submit" id="Them">
+                <i class="fa fa-check" aria-hidden="true">&nbsp;</i>Lưu lại</button>
+        </div>
     </div>
-</form>
+
+</div>
 {{else}}
-<form id="formAdd" action="/admin/nguphap/add" method="POST">
-    <div>
-        <div class=" m-5 shadow p-3 bg-gray rounded text-black">
-            <div>
-                <h5 class="modal-title text-black col-md-11" id="logoutModalLabel"><b>THÊM NGỮ PHÁP</b></h5>
-            </div>
-            <hr>
-            <div class="form-group row ml-5">
-                <div class="col-md-5 mt-3">
-                    <select name="LoaiBai" style="width: 400px;height: 40px">
-                        <option value="">Chọn cấp độ</option>
-                        <option value="3">Cấu trúc căn bản</option>
-                        <option value="4">Cấu trúc nâng cao</option> 
-                    </select>
+<div>
+    <div class="m-3 bg-gray rounded text-black">
+        <div>
+            <h1><b>Thêm Ngữ Pháp</b></h1>
+        </div>
+        <hr>
+        <div class="shadow-lg m-4 p-3">
+            <form id="formAdd" action="/admin/nguphap/add" method="POST">
+                <div class="form-group row ml-5">
+                    <div class="col-md-6 mt-3">
+                        <select name="LoaiBai" style="width: 400px;height: 40px">
+                            <option value="">Chọn cấp độ</option>
+                            <option value="3">Cấu trúc căn bản</option>
+                            <option value="4">Cấu trúc nâng cao</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 mt-3">
+                        <input name="NgayDang" type="text" id="date" placeholder="Ngày đăng"
+                            value="{{format this.Nowday}}" class="form-control border">
+                    </div>
+                    <div class="col-md-11 mt-3">
+                        <input name="ChuDe" type="text" id="ten" class="form-control border" placeholder="Chủ đề"
+                            value="">
+                    </div>
+                    <div class="col-md-11 mt-3">
+                        <textarea class="form-control border" name="NoiDung" id="txtEditor" rows="10"></textarea>
+                    </div>
                 </div>
-                <div class="col-md-5 mt-3">
-                    <input name="NgayDang" type="text" id="date" placeholder="Ngày đăng" value="{{format this.Nowday}}"
-                        class="form-control border">
-                </div >
-                <div class="col-md-11 mt-3">
-                    <input name="ChuDe" type="text" id="ten" class="form-control border" placeholder="Chủ đề"
-                        value="">
-                </div>
-                <div class="col-md-11 mt-3">
-                    <textarea class="form-control border" name="NoiDung" id="txtEditor"
-                        rows="10"></textarea>
-                </div>
-            </div>
-            <div class="col-md-12 ml-5" style="margin-top:20px">
+            </form>
+            <div class="col-md-11 ml-5" style="margin-top:20px; display:flex;justify-content:space-between  ">
                 <a class="btn btna" href="/admin/nguphap"
-                    style="margin-left:none !important;height:35px;background-color:#2A3F54; color:floralwhite; width:100px"
-                    type="button" id="Quaylai"><i class="fa fa-backward" aria-hidden="true">&nbsp;</i>Quay lại</a>
-                <button class="btn btna "
-                    style="height:35px;background-color:#2A3F54; color:floralwhite; width:150px" type="submit"
-                    id="Them">
+                    id="Quaylai"><i class="fa fa-backward" aria-hidden="true">&nbsp;</i>Quay lại</a>
+                <button class="btn btna mr-4"
+                    type="submit" id="Them">
                     <i class="fa fa-check" aria-hidden="true">&nbsp;</i>Thêm cấu trúc</button>
             </div>
         </div>
-
     </div>
-</form>
 
+</div>
 
 {{/if}}

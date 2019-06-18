@@ -26,7 +26,8 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res, next) => {
+router.post('/loc', (req, res, next) => 
+{
     var id = req.body.LoaiTu;
     if (isNaN(id)) {
         res.redirect('/admin/tuvung')
@@ -80,7 +81,7 @@ router.get('/is-exsist',(req,res,next) =>{
     })
 })
 
-router.get('/delete/:id',(req,res,next) =>{
+router.post('/delete/:id',(req,res,next) =>{
     var id = req.params.id;
     var entity = {
         idTuVung: id,

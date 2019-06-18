@@ -15,6 +15,11 @@
             mask: true,
         });
     })
+
+    $("button").click(function () {
+        var a = $(this).val();
+        $('#FormDelete').attr('action', '/admin/nguphap/delete/' + a);
+    })
 </script>
 
 <script>
@@ -27,14 +32,14 @@
 {{/section}}
 
 <div class="mt-3">
-    <div class="title ml-5 text-black">
-        <h2><b>Quản lý Phần ngữ pháp</b></h2>
+    <div class="title ml-3 mr-3 text-black">
+        <h2><b>Quản Lý Phần Ngữ Pháp</b></h2>
         <hr>
     </div>
     <div class="col-md-12 ml-0 mt-3 d-flex flex-nowrap">
         
-        <div class="col-md-4 d-flex justify-content-start">
-            <button id="btnThem" class="btn"><a href="/admin/nguphap/add">
+        <div class="col-md-11 d-flex justify-content-end">
+            <button id="btnThem" class="btn"><a href="/admin/nguphap/add" class="text-white">
                 <i class="fas fa-plus-circle"></i> Thêm bài học</a></button>
         </div>
     </div>
@@ -55,9 +60,9 @@
                     <td>{{ChuDe}}</td>
                     <td>{{format NgayDang}}</td>
                     <td>
-                        <a href="/admin/nguphap/delete/{{idCauTruc}}"><i
-                                class="fas fa-minus-circle"></i></a>
-                        <a href="/admin/nguphap/chitiet/{{idCauTruc}}" id="chitiet"><i class="far fa-eye"></i></a>
+                        <button class="btn" value="{{idCauTruc}}" data-toggle="modal" data-target="#delModal"><i
+                                class="fas fa-minus-circle"></i></button>
+                        <a class="btn" href="/admin/nguphap/chitiet/{{idCauTruc}}" id="chitiet"><i class="far fa-eye"></i></a>
                     </td>
                 </tr>
                 {{/each}}
@@ -81,3 +86,26 @@
         </ul>
     </nav>
 </div>
+
+
+<form method="POST" id="FormDelete">
+    <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-black" id="delModalLabel"><b>XÓA BÀI</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn thật sự muốn xóa bài này?
+                </div>
+                <div class="col-md-12 p-3 text-center">
+                    <a href="javascript: $('#FormDelete').submit()" class="btn btn-danger">Đồng ý</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -8,6 +8,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
 <script>
+    $("button").click(function () {
+        var a = $(this).val();
+        $('#FormDelete').attr('action', '/admin/taikhoan/delete/' + a);
+    })
+
     $(function () {
         $('#date').datetimepicker({
             format: 'd/m/Y',
@@ -82,10 +87,11 @@
 {{/section}}
 
 
-<div class="mt-3">
+<div class="mt-3 ml-3 mr-3">
     <div class="title ml-5 text-black">
         <h2><b>Quản lý Người dùng</b></h2>
     </div>
+    <hr>
     <div class="col-md-12 ml-5 mt-3 d-flex flex-nowrap">
         <div class="col-md-9 d-flex flex-nowrap">
             Lọc theo hệ:
@@ -126,34 +132,12 @@
                     <td>{{format ngaysinh}}</td>
                     <td>{{format NgayTaoTK}}</td>
                     <td>
-                        <a href="/admin/taikhoan/delete/{{idTaiKhoan}}">
-                            <i class="fas fa-minus-circle"></i></a>
-                        <a href="/admin/taikhoan/edit/{{idTaiKhoan}}"><i class="fas fa-tools"></i></a>
+                        <button class="btn" value="{{idTaiKhoan}}" data-toggle="modal" data-target="#delModal"><i
+                                class="fas fa-minus-circle"></i></button>
+                        <a class="btn" href="/admin/taikhoan/edit/{{idTaiKhoan}}"><i class="fas fa-tools"></i></a>
                     </td>
                 </tr>
                 {{/each}}
-                {{!-- <form method="POST" action="/admin/taikhoan/delete/{{idTaiKhoan}}">
-                    <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title text-black" id="delModalLabel"><b>XÓA BÀI</b></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn thật sự muốn xóa bài này?
-                                </div>
-                                <div class="col-md-12 p-3 text-center">
-                                    <button type="submit" class="btn btn-exit">Đồng ý</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form> --}}
-
             </tbody>
 
 
@@ -223,7 +207,7 @@
     </div>
 </form>
 
-<form method="POST" action="/admin/taikhoan/delete">
+<form method="POST" id="FormDelete">
     <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -238,7 +222,7 @@
                     Bạn thật sự muốn xóa bài này?
                 </div>
                 <div class="col-md-12 p-3 text-center">
-                    <button type="submit" class="btn btn-exit">Đồng ý</button>
+                    <a href="javascript: $('#FormDelete').submit()" class="btn btn-danger">Đồng ý</a>
                 </div>
             </div>
         </div>

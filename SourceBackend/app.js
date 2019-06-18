@@ -20,7 +20,7 @@ app.use(bodyParser());
 app.engine('.hbs', exphbs({extname: '.hbs',
         helpers: {
         format: val => {
-          return moment(val).format('L');
+          return moment(val).format('DD/MM/YYYY');
         },
         section: hbs_sections() 
   }}));
@@ -32,6 +32,8 @@ app.use(express.static(__dirname+'/public'));
 
 app.use('/admin', require('./router/admin-router/indexAdmin'))
 app.use('/admin', require('./router/admin-router/QLBaiViet'))
+app.use('/admin/bainghe', require('./router/admin-router/QLBaiNghe'))
+app.use('/admin/baikiemtra', require('./router/admin-router/QLBaiKiemTra'))
 app.use('/admin/baiviet', require('./router/admin-router/QLBaiViet'))
 app.use('/admin/taikhoan', require('./router/admin-router/QLTaiKhoan'))
 app.use('/admin/tuvung', require('./router/admin-router/QLTuVung'))
