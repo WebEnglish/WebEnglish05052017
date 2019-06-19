@@ -33,7 +33,7 @@ module.exports = {
   },
 
   getIDByEmail: email => {
-    return db.load(`select * from taikhoan where email = '${email}' and Xoa = 0`);
+    return db.load(`select * from taikhoan where idTaiKhoan = '${email}' and Xoa = 0`);
   }
 
 

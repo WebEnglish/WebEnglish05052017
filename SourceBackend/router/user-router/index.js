@@ -5,27 +5,30 @@ var moment = require('moment');
 var passport = require('passport');
 var userModel = require('../../model/thanhvien.model');
 var abcModel = require('../../model/DSmuchoc.model');
+var randomstring = require("randomstring");
+var nodemailer = require('nodemailer')
 
-
-
-
+router.get('/getnewpassword',(req,res) => {
+    res.render('user/LayLaiMatKhau', {
+        layout: './index'
+    })
+})
 
 router.post('/changePass', (req, res) => {
     var infor = req.body;
-     var id = req.user.idTaiKhoan
-    var newPass = bcrypt.hashSync(infor.newPass,10);
+    var id = req.user.idTaiKhoan
+    var newPass = bcrypt.hashSync(infor.newPass, 10);
     var entity = {
-        idTaiKhoan : id,
-        matKhau : newPass
+        idTaiKhoan: id,
+        matKhau: newPass
     }
     userModel.update(entity);
-    if(req.user.phanhe === +2)
-    {
+    if (req.user.phanhe === +2) {
         res.redirect('/trangchu');
     }
     else res.redirect('/admin')
-    
-    
+
+
 })
 
 router.get('/checkPass', (req, res) => {
@@ -72,6 +75,7 @@ router.post('/register', (req, res, next) => {
         matkhau: hash,
         email: req.body.email,
         phanhe: 2,
+        KeyPass : randomstring.generate(10),
         Xoa: 0,
     }
     userModel.add(entity).then(id => {
@@ -311,6 +315,54 @@ router.post('/login', (req, res, next) => {
 })
 
 
+
+router.post('/QuenMatKhau', (req, res, next) => {
+    var email = req.body.email;
+    var transporter = nodemailer.createTransport({ // config mail server
+        service: 'Gmail',
+        auth: {
+            user: 'lehung03091997@gmail.com',
+            pass: '0309hung'
+        }
+    });
+
+    var user = new Object();
+    userModel.getPassbyEmail(email).then(row => {
+        var url = 'http://localhost:5517/getnewpassword?email=' + email + '&key=' + row[0].KeyPass;
+        var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
+            from: 'ENGLISHWORLD',
+            to: email,//đến đâu
+            subject: 'Email lấy lại mật khẩu từ website ENGLISHWORLD',
+            html: '<a href="' + url + '"><b>Click here to reset password</b></a>',
+        }
+        transporter.sendMail(mainOptions, function (err, info) {
+            if (err) {
+                console.log(err);
+                res.redirect('/');
+            } else {
+                console.log('Message sent: ' + info.response);
+                res.redirect('/');
+            }
+        });
+    });
+})
+
+
+
+router.post('/getnewpassword', (req,res) => {
+    var mail = req.query.email;
+    var pass = req.body.NewPass;
+    var hash = bcrypt.hashSync(pass, 10);
+    userModel.getPassbyEmail(mail).then(row => {
+        var entity = {
+            idTaiKhoan: row[0].idTaiKhoan,
+            matkhau : hash,
+        }
+        userModel.update(entity).then(id =>{
+            res.redirect('/login');
+        })
+    })
+})
 
 
 

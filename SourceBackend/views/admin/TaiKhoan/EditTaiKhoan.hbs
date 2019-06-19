@@ -28,7 +28,7 @@
 </script>
 
 {{/section}}
-<form action="/admin/taikhoan/edit" method="POST">
+<form method="POST">
     <div>
         <div class=" m-5 shadow p-3 bg-gray rounded text-black">
             <h1><b>Chỉnh sửa tài khoản</b></h1>
@@ -43,11 +43,11 @@
             </div>
             <div class="col-md-12 mt-3 d-flex justify-content-center">
                 <label class="col-md-2">Ngày sinh:</label>
-                <input class="col-md-5 form-control border" type="text" id="date" name="date" value=" {{this.member.ngaysinh}}">
+                <input class="col-md-5 form-control border" type="text" id="date" name="date" value=" {{format this.member.ngaysinh}}">
             </div>
             <div class="col-md-12 mt-3 d-flex justify-content-center">
                 <label class="col-md-2">Ngày đăng kí:</label>
-                <input class="col-md-5 form-control border" type="text" id="datex" name="da" value=" {{this.member.NgayTaoTK}}">
+                <input class="col-md-5 form-control border" type="text" id="datex" name="registerDay" value=" {{format this.member.NgayTaoTK}}">
             </div>
 
             <div  class="col-md-11 ml-5" style="margin-top:20px; display:flex; justify-content:space-between">
