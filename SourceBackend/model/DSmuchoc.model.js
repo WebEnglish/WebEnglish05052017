@@ -49,4 +49,7 @@ module.exports = {
   baikt: (idBH) =>{
     return db.load(`SELECT * FROM baitest AS bt WHERE bt.idBaiTest = ${idBH} AND bt.Xoa = 0`);
   },
+  addComment: entity => {
+    return db.add(`binhluan`, entity);
+  }
 }

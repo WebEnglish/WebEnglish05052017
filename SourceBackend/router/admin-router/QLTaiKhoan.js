@@ -39,31 +39,34 @@ router.get('/edit/:id', (req, res, next) => {
 
 })
 
-router.get('/edit/:id', (req, res, next) => {
+// router.get('/edit/:id', (req, res, next) => {
+//     var id = req.params.id;
+//     userModel.GetAllById(id).then(tk => {
+//         res.render('admin/TaiKhoan/EditTaiKhoan', {
+//             member: tk[0],
+//             layout: './indexAdmin'
+
+//         }).catch(err => {
+//             console.log(err);
+//             res.end('error occured.')
+//         });
+//         console.log(member);
+//     })
+
+// })
+
+router.post('/edit/:id', (req, res, next) => {
     var id = req.params.id;
-    userModel.GetAllById(id).then(tk => {
-        res.render('admin/TaiKhoan/EditTaiKhoan', {
-            member: tk[0],
-            layout: './indexAdmin'
-
-        }).catch(err => {
-            console.log(err);
-            res.end('error occured.')
-        });
-        console.log(member);
-    })
-
-})
-
-router.post('/edit', (req, res, next) => {
     var temp = req.body;
-    userModel.getIDByEmail(temp.email).then(row => {
+    var dob = moment(temp.date,'DD/MM/YYYY').format('YYYY/MM/DD');
+    var create = moment(temp.registerDay,'DD/MM/YYYY').format('YYYY/MM/DD');
+    userModel.getIDByEmail(id).then(row => {
         var entity = {
             idTaiKhoan: row[0].idTaiKhoan,
             hoten: temp.ten,
             email: temp.email,
-            ngaysinh: temp.date,
-            NgayTaoTK: temp.da
+            ngaysinh: dob,
+            NgayTaoTK: create
         }
         userModel.update(entity).then(id => {
             res.redirect('/admin/taikhoan')

@@ -109,9 +109,9 @@
                     <i class="fas fa-id-card"></i>
                     Profile
                   </a>
-                 
+
                   {{#if isAdmin}}
-                   <div class="dropdown-divider"></div>
+                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/admin">
                     <i class="fas fa-id-card"></i>
                     Quản lí website
@@ -149,7 +149,39 @@
 
 
   </div>
-  <!-- Modal đăng nhập -->
+
+  
+  <form novalidate id="FormEmail" method="POST" action="/QuenMatKhau">
+    <div class="modal fade" id="ChangePass" style="margin:auto;width:500px" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-black" id="signinModalLabel"><b>Quên mật khẩu</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <label style="color: red" >*Nhập email của bạn để lấy lại mật khẩu</label>
+          <div class="modal-body pt-1 pb-5">
+            <div class="form-group row">
+              <div class="col-md-12 mt-4">
+                <input type="text" name="email" class="form-control border" placeholder="Nhập Email">
+                <div class="col-md-6" style="color: rgb(252, 69, 69)">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row justify-content-center">
+            <div class="col-md-10">
+              <button type="submit" class="btn btn-block btn-primary text-white py-3 px-5"><a>Gửi</a></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
 
 
   <!-- Modal đăng ký -->
@@ -305,6 +337,8 @@
   <script src="/js/jquery.animateNumber.min.js"></script>
   <script src="/js/aos.js"></script>
   <script src="/js/main.js"></script>
+   {{{_sections.js}}}
+
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
@@ -424,6 +458,31 @@
             required: 'Nhập chính xác mật khẩu',
             equalTo: 'Mật khẩu không khớp nhau'
           }
+        },
+        errorElement: 'small',
+        errorClass: 'col help-block text-danger',
+        highlight: function (e) {
+          $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: function (e) {
+          $(e).removeClass('is-invalid').addClass('is-valid');
+        }
+      })
+    })
+  </script>
+
+   <script>
+    $(function () {
+      $('#FormEmail').validate({
+        rules: {
+          email: {
+            required: true,
+          }        
+        },
+        messages: {
+          email: {
+            required: 'Nhập chính xác email',
+          },
         },
         errorElement: 'small',
         errorClass: 'col help-block text-danger',

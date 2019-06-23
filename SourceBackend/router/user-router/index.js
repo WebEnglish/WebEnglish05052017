@@ -5,27 +5,30 @@ var moment = require('moment');
 var passport = require('passport');
 var userModel = require('../../model/thanhvien.model');
 var abcModel = require('../../model/DSmuchoc.model');
+var randomstring = require("randomstring");
+var nodemailer = require('nodemailer')
 
-
-
-
+router.get('/getnewpassword', (req, res) => {
+    res.render('user/LayLaiMatKhau', {
+        layout: './index'
+    })
+})
 
 router.post('/changePass', (req, res) => {
     var infor = req.body;
-     var id = req.user.idTaiKhoan
-    var newPass = bcrypt.hashSync(infor.newPass,10);
+    var id = req.user.idTaiKhoan
+    var newPass = bcrypt.hashSync(infor.newPass, 10);
     var entity = {
-        idTaiKhoan : id,
-        matKhau : newPass
+        idTaiKhoan: id,
+        matKhau: newPass
     }
     userModel.update(entity);
-    if(req.user.phanhe === +2)
-    {
+    if (req.user.phanhe === +2) {
         res.redirect('/trangchu');
     }
     else res.redirect('/admin')
-    
-    
+
+
 })
 
 router.get('/checkPass', (req, res) => {
@@ -72,6 +75,7 @@ router.post('/register', (req, res, next) => {
         matkhau: hash,
         email: req.body.email,
         phanhe: 2,
+        KeyPass: randomstring.generate(10),
         Xoa: 0,
     }
     userModel.add(entity).then(id => {
@@ -224,8 +228,11 @@ router.get('/:idCM/:idCD', (req, res, next) => {
         abcModel.countdsbainghe(id2),
         abcModel.chitietbaiviet(id2, id),
         abcModel.baivietlienquan(id2),
-        abcModel.baikt(id2)
-    ]).then(([row, row2, row3, row4, row5, count_rows, row6, row7, row8]) => {
+        abcModel.baikt(id2),
+        userModel.commentBH(id2),
+        userModel.commentBN(id2),
+        userModel.commentBV(id2)
+    ]).then(([row, row2, row3, row4, row5, count_rows, row6, row7, row8, row9, row10, row11]) => {
         for (const c of res.locals.MucHoc) {
             if (c.idLoaiBai === +id) {
                 c.isActive = true;
@@ -257,6 +264,7 @@ router.get('/:idCM/:idCD', (req, res, next) => {
             res.render('user/vocabulary', {
                 Chude: row2,
                 Tuvung: row3,
+                CommentBH: row9,
                 layout: './index'
             })
         }
@@ -264,6 +272,7 @@ router.get('/:idCM/:idCD', (req, res, next) => {
             res.render('user/grammar', {
                 Chude: row2,
                 Nguphap: row4,
+                CommentBH: row9,
                 layout: './index'
             })
         }
@@ -272,6 +281,7 @@ router.get('/:idCM/:idCD', (req, res, next) => {
                 Chude: row2,
                 DSluyennghe: row5,
                 pages,
+                CommentBN: row10,
                 layout: './index'
             });
         }
@@ -285,10 +295,32 @@ router.get('/:idCM/:idCD', (req, res, next) => {
             res.render("user/detail-tip", {
                 Chitiet: row6,
                 lienquan: row7,
+                CommentBV: row11,
                 layout: './index'
             });
         }
     }).catch(next);
+})
+
+router.post('/:idCM/:idBH', (req, res, next) => {
+    var datetime = new Date();
+    var id = req.params.idBH;
+    var entity = {
+        NoiDung: req.body.comment,
+        ViTri: id,
+        NgayDang: datetime,
+        NguoiDang: req.user.idTaiKhoan
+    }
+
+
+    abcModel.addComment(entity)
+        .then(n => {
+            res.redirect('back');
+        })
+        .catch(err => {
+            console.log(err);
+            res.end('error occured!')
+        });
 })
 
 router.post('/login', (req, res, next) => {
@@ -311,6 +343,78 @@ router.post('/login', (req, res, next) => {
 })
 
 
+
+router.post('/QuenMatKhau', (req, res, next) => {
+    var email = req.body.email;
+    var transporter = nodemailer.createTransport({ // config mail server
+        service: 'Gmail',
+        auth: {
+            user: 'lehung03091997@gmail.com',
+            pass: '0309hung'
+        }
+    });
+
+    var user = new Object();
+    userModel.getPassbyEmail(email).then(row => {
+        var url = 'http://localhost:5517/getnewpassword?email=' + email + '&key=' + row[0].KeyPass;
+        var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
+            from: 'ENGLISHWORLD',
+            to: email,//đến đâu
+            subject: 'Email lấy lại mật khẩu từ website ENGLISHWORLD',
+            html: '<a href="' + url + '"><b>Click here to reset password</b></a>',
+        }
+        transporter.sendMail(mainOptions, function (err, info) {
+            if (err) {
+                console.log(err);
+                res.redirect('/');
+            } else {
+                console.log('Message sent: ' + info.response);
+                res.redirect('/');
+            }
+        });
+    });
+})
+
+
+
+router.post('/getnewpassword', (req, res) => {
+    var mail = req.query.email;
+    var key = req.query.key;
+    var thaydoi = false;
+    var thatbai = false;
+    userModel.getPassbyEmail(mail).then(row => {
+
+        if (row[0].KeyPass == key) {
+            var pass = req.body.NewPass;
+            var hash = bcrypt.hashSync(pass, 10);
+            userModel.getPassbyEmail(mail).then(row => {
+                var entity = {
+                    idTaiKhoan: row[0].idTaiKhoan,
+                    matkhau: hash,
+                }
+                userModel.update(entity).then(id => {
+                    thaydoi = true
+                    res.render('user/LayLaiMatKhau', {
+                        thaydoi: thaydoi,
+                        layout: './index'
+
+                    })
+                })
+            })
+        }
+        else {
+            thatbai = true;
+            res.render('user/LayLaiMatKhau', {
+                thatBai: thatbai,
+                layout: './index'
+
+            })
+
+        }
+    })
+
+
+})
 
 
 

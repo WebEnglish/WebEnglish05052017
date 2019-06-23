@@ -34,7 +34,19 @@ module.exports = {
 
   getIDByEmail: email => {
     return db.load(`select * from taikhoan where email = '${email}' and Xoa = 0`);
+  },
+
+  commentBV: (idBV) => {
+    return db.load(`SELECT bl.*, tk.hoten FROM binhluan AS bl, taikhoan AS tk, tips AS t WHERE t.idTips = ${idBV} AND t.idTips = bl.ViTri AND bl.NguoiDang = tk.idTaiKhoan AND bl.Xoa =0`);
+  },
+  commentBH: (idBH) => {
+    return db.load(`SELECT bl.*, tk.hoten FROM binhluan AS bl, taikhoan AS tk, chudebaihoc AS cdbh WHERE cdbh.idCDBaiHoc = ${idBH} AND cdbh.idCDBaiHoc = bl.ViTri AND bl.NguoiDang = tk.idTaiKhoan AND bl.Xoa =0`);
+  },
+  commentBN: (idBN)=>{
+    return db.load(`SELECT bl.*, tk.hoten FROM binhluan AS bl, taikhoan AS tk, dsbainghe AS bn WHERE bn.idBaiNghe = ${idBN} AND bn.idBaiNghe = bl.ViTri AND bl.NguoiDang = tk.idTaiKhoan AND bl.Xoa =0`)
+  },
+
+  addComment: entity => {
+    return db.add(`binhluan`, entity);
   }
-
-
 };
