@@ -8,7 +8,7 @@ var abcModel = require('../../model/DSmuchoc.model');
 var randomstring = require("randomstring");
 var nodemailer = require('nodemailer')
 
-router.get('/getnewpassword',(req,res) => {
+router.get('/getnewpassword', (req, res) => {
     res.render('user/LayLaiMatKhau', {
         layout: './index'
     })
@@ -75,7 +75,7 @@ router.post('/register', (req, res, next) => {
         matkhau: hash,
         email: req.body.email,
         phanhe: 2,
-        KeyPass : randomstring.generate(10),
+        KeyPass: randomstring.generate(10),
         Xoa: 0,
     }
     userModel.add(entity).then(id => {
@@ -349,19 +349,43 @@ router.post('/QuenMatKhau', (req, res, next) => {
 
 
 
-router.post('/getnewpassword', (req,res) => {
+router.post('/getnewpassword', (req, res) => {
     var mail = req.query.email;
-    var pass = req.body.NewPass;
-    var hash = bcrypt.hashSync(pass, 10);
+    var key = req.query.key;
+    var thaydoi = false;
+    var thatbai = false;
     userModel.getPassbyEmail(mail).then(row => {
-        var entity = {
-            idTaiKhoan: row[0].idTaiKhoan,
-            matkhau : hash,
+
+        if (row[0].KeyPass == key) {
+            var pass = req.body.NewPass;
+            var hash = bcrypt.hashSync(pass, 10);
+            userModel.getPassbyEmail(mail).then(row => {
+                var entity = {
+                    idTaiKhoan: row[0].idTaiKhoan,
+                    matkhau: hash,
+                }
+                userModel.update(entity).then(id => {
+                    thaydoi = true
+                    res.render('user/LayLaiMatKhau', {
+                        thaydoi: thaydoi,
+                        layout: './index'
+
+                    })
+                })
+            })
         }
-        userModel.update(entity).then(id =>{
-            res.redirect('/login');
-        })
+        else {
+            thatbai = true;
+            res.render('user/LayLaiMatKhau', {
+                thatBai: thatbai,
+                layout: './index'
+
+            })
+
+        }
     })
+
+
 })
 
 

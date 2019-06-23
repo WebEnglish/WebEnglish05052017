@@ -41,12 +41,18 @@
 </script>
 {{/section}}
 
-<form method="POST" id="GetNewForm">
+<form novalidate method="POST" id="GetNewForm">
     <div style="padding-top:100px" class="container col-md-5 text-black">
         <div class="shadow mb-5 bg-white rounded ">
             <div class="modal-header">
                 <h5 class="modal-title text-black" id="signinModalLabel"><b>NHẬP LẠI MẬT KHẨU MỚI</b></h5>
             </div>
+            {{#if this.thaydoi}}
+            <label style="color:red">Thay đổi mật khẩu thành công.</label>
+            {{/if}}
+            {{#if this.thatBai}}
+            <label style="color: red">Thay đổi mật khẩu thất bại, vui lòng kiểm tra lại</label>
+            {{/if}}
             <div class="modal-body ">
                 <div class="form-group row">
                     <div class="col-md-12 mt-5">

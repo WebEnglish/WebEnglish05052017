@@ -151,7 +151,7 @@
   </div>
 
   
-  <form method="POST" action="/QuenMatKhau">
+  <form novalidate id="FormEmail" method="POST" action="/QuenMatKhau">
     <div class="modal fade" id="ChangePass" style="margin:auto;width:500px" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -162,7 +162,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body p-5">
+          <label style="color: red" >*Nhập email của bạn để lấy lại mật khẩu</label>
+          <div class="modal-body pt-1 pb-5">
             <div class="form-group row">
               <div class="col-md-12 mt-4">
                 <input type="text" name="email" class="form-control border" placeholder="Nhập Email">
@@ -336,6 +337,8 @@
   <script src="/js/jquery.animateNumber.min.js"></script>
   <script src="/js/aos.js"></script>
   <script src="/js/main.js"></script>
+   {{{_sections.js}}}
+
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
@@ -455,6 +458,31 @@
             required: 'Nhập chính xác mật khẩu',
             equalTo: 'Mật khẩu không khớp nhau'
           }
+        },
+        errorElement: 'small',
+        errorClass: 'col help-block text-danger',
+        highlight: function (e) {
+          $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: function (e) {
+          $(e).removeClass('is-invalid').addClass('is-valid');
+        }
+      })
+    })
+  </script>
+
+   <script>
+    $(function () {
+      $('#FormEmail').validate({
+        rules: {
+          email: {
+            required: true,
+          }        
+        },
+        messages: {
+          email: {
+            required: 'Nhập chính xác email',
+          },
         },
         errorElement: 'small',
         errorClass: 'col help-block text-danger',
