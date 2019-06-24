@@ -48,5 +48,9 @@ module.exports = {
 
   addComment: entity => {
     return db.add(`binhluan`, entity);
-  }
+  },
+
+  getRowByid: id => {
+    return db.load(`select * from taikhoan where idTaiKhoan = '${id}' and Xoa = 0`);
+  },
 };

@@ -72,9 +72,7 @@
             rules: {
                 ChuDe: {
                     required: true,
-                    remote: {
-                        url: '/admin/nguphap/is-validate'
-                    }
+                    
                 },
                 LoaiBai: {
                     required: true,
@@ -90,7 +88,6 @@
             messages: {
                 ChuDe: {
                     required: 'Nhập chính xác chủ đề',
-                    remote: 'Chủ đề cấu trúc đã tồn tại'
                 },
                 LoaiBai: {
                     required: 'Nhập chính xác cấp độ'
@@ -133,9 +130,10 @@
             <h1><b>Chi Tiết Ngữ Pháp</b></h1>
         </div>
         <hr>
-        {{#each chitiet}}
-        <div class="shadow-lg m-4 p-3">
-            <form id="formEdit" action="/admin/nguphap/chinhsua" method="POST">
+        <form id="formEdit" action="/admin/nguphap/chinhsua" method="POST">
+            {{#each chitiet}}
+            <div class="shadow-lg m-4 p-3">
+
                 <div class="form-group row ml-5">
                     <div class="col-md-7 d-flex flex-nowrap">
                         <label class="col-md-1 mt-2">Mã: </label>
@@ -155,15 +153,16 @@
                             rows="10">{{{NoiDung}}}</textarea>
                     </div>
                 </div>
-            </form>
-        </div>
-        {{/each}}
-        <div class="col-md-11 ml-5" style="margin-top:20px; display:flex;justify-content:space-between">
-            <a class="btn btna" href="/admin/nguphap" id="Quaylai"><i class="fa fa-backward"
-                    aria-hidden="true">&nbsp;</i>Quay lại</a>
-            <button class="btn btna btn-primary" type="submit" id="Them">
-                <i class="fa fa-check" aria-hidden="true">&nbsp;</i>Lưu lại</button>
-        </div>
+
+            </div>
+            {{/each}}
+            <div class="col-md-11 ml-5" style="margin-top:20px; display:flex;justify-content:space-between">
+                <a class="btn btna" href="/admin/nguphap" id="Quaylai"><i class="fa fa-backward"
+                        aria-hidden="true">&nbsp;</i>Quay lại</a>
+                <button class="btn btna btn-primary" type="submit" id="Them">
+                    <i class="fa fa-check" aria-hidden="true">&nbsp;</i>Lưu lại</button>
+            </div>
+        </form>
     </div>
 
 </div>
@@ -196,14 +195,14 @@
                         <textarea class="form-control border" name="NoiDung" id="txtEditor" rows="10"></textarea>
                     </div>
                 </div>
+
+                <div class="col-md-11 ml-5" style="margin-top:20px; display:flex;justify-content:space-between  ">
+                    <a class="btn btna" href="/admin/nguphap" id="Quaylai"><i class="fa fa-backward"
+                            aria-hidden="true">&nbsp;</i>Quay lại</a>
+                    <button class="btn btna mr-4" type="submit" id="Them">
+                        <i class="fa fa-check" aria-hidden="true">&nbsp;</i>Thêm cấu trúc</button>
+                </div>
             </form>
-            <div class="col-md-11 ml-5" style="margin-top:20px; display:flex;justify-content:space-between  ">
-                <a class="btn btna" href="/admin/nguphap"
-                    id="Quaylai"><i class="fa fa-backward" aria-hidden="true">&nbsp;</i>Quay lại</a>
-                <button class="btn btna mr-4"
-                    type="submit" id="Them">
-                    <i class="fa fa-check" aria-hidden="true">&nbsp;</i>Thêm cấu trúc</button>
-            </div>
         </div>
     </div>
 

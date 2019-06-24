@@ -60,7 +60,7 @@ router.post('/edit/:id', (req, res, next) => {
     var temp = req.body;
     var dob = moment(temp.date,'DD/MM/YYYY').format('YYYY/MM/DD');
     var create = moment(temp.registerDay,'DD/MM/YYYY').format('YYYY/MM/DD');
-    userModel.getIDByEmail(id).then(row => {
+    userModel.getRowByid(id).then(row => {
         var entity = {
             idTaiKhoan: row[0].idTaiKhoan,
             hoten: temp.ten,

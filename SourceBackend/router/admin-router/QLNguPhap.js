@@ -79,40 +79,34 @@ router.post('/add', (req, res) => {
         LoaiBai: temp.LoaiBai,
         Xoa: 0,
     }
-    NPModel.addChuDe(entitya);
-
-    NPModel.GetCDByten(temp.ChuDe).then(row => {
+    NPModel.addChuDe(entitya).then(row => {
         var dob = moment(temp.NgayDang, 'DD/MM/YYYY').format('YYYY-MM-DD');
         entityb = {
-            CDBaiHoc: row[0].idCDBaiHoc,
+            CDBaiHoc: row,
             NoiDung: temp.NoiDung,
             NgayDang: dob,
             Xoa: 0,
         };
 
         NPModel.addCauTruc(entityb);
+        res.redirect('/admin/nguphap')
+    });
 
-    })
-    res.redirect('/admin/nguphap/add/' + temp.ChuDe);
-
-})
-
-router.get('/add/:id', (req, res) => {
-    var a = req.params.id
-    res.end(a);
+    
 })
 
 
 
-router.get('/is-validate', (req, res, next) => {
-    var ten = req.query.ChuDe;
-    NPModel.GetCDByten(ten).then(rows => {
-        if (rows.length > 0) {
-            return res.json(false);
-        }
-        return res.json(true);
-    })
-})
+
+// router.get('/is-exist', (req, res, next) => {
+//     var ten = req.query.ChuDe;
+//     NPModel.GetCDByten(ten).then(rows => {
+//         if (rows.length > 0) {
+//             return res.json(false);
+//         }
+//         return res.json(true);
+//     })
+// })
 
 router.post('/delete/:id', (req, res) => {
     var id = req.params.id;
